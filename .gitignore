@@ -1,0 +1,46 @@
+.gradle
+/local.properties
+.DS_Store
+build
+keystore.jks
+app/keystore.jks
+CHANGELOG.md
+History.md
+fabric.properties
+schemas
+/captures
+.externalNativeBuild
+
+# Exclude all dictionaries but project.xml
+/.idea/dictionaries/*
+!/.idea/dictionaries/project.xml
+/quickstart/fabric.properties
+
+# IntelliJ
+*.iml
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/gradle.xml
+.idea/assetWizardSettings.xml
+.idea/dictionaries
+.idea/libraries
+.idea/caches
+# Android Studio 3 in .gitignore file.
+.idea/caches/build_file_checksums.ser
+.idea/modules.xml
+
+# User-specific configurations
+.idea/shelf/
+.idea/.name
+.idea/compiler.xml
+.idea/copyright/profiles_settings.xml
+.idea/encodings.xml
+.idea/misc.xml
+.idea/scopes/scope_settings.xml
+.idea/vcs.xml
+.idea/jsLibraryMappings.xml
+.idea/datasources.xml
+.idea/dataSources.ids
+.idea/sqlDataSources.xml
+.idea/dynamic.xml
+.idea/uiDesigner.xml
