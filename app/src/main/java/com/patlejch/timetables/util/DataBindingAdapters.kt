@@ -1,7 +1,9 @@
 package com.patlejch.timetables.util
 
+import android.view.MenuItem
 import androidx.databinding.BindingAdapter
 import android.widget.ImageView
+import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.Group
 import androidx.core.view.isInvisible
@@ -32,4 +34,13 @@ fun setGroupInvisible(group: Group, invisible: Boolean) {
 @BindingAdapter("invisibleUnless")
 fun setGroupInvisibleUnless(group: Group, invisibleUnless: Boolean) {
     setGroupInvisible(group, invisibleUnless.not())
+}
+
+interface OnMenuItemClickListener {
+    fun onMenuItemClick(item: MenuItem): Boolean
+}
+
+@BindingAdapter("onMenuClick")
+fun Toolbar.setOnMenuClickListener(listener: OnMenuItemClickListener) {
+    setOnMenuItemClickListener { listener.onMenuItemClick(it) }
 }

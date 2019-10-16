@@ -6,7 +6,12 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.patlejch.timetables.ui.home.HomeFragment"
-        android:label="HomeFragment">
+        android:name="com.patlejch.timetables.ui.home.HomeFragment">
     </fragment>
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.patlejch.timetables.ui.settings.SettingsFragment">
+    </fragment>
+
 </navigation>

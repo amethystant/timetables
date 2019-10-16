@@ -4,7 +4,6 @@ import com.patlejch.timetables.R
 import com.patlejch.timetables.databinding.FragmentHomeBinding
 import com.patlejch.timetables.model.base.TimetablesFragment
 import com.skoumal.teanity.util.Insets
-import com.skoumal.teanity.view.TeanityFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : TimetablesFragment<HomeViewModel, FragmentHomeBinding>() {
