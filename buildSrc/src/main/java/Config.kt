@@ -5,7 +5,7 @@ object Config {
     object Android {
         const val compileSdk = 28
         const val targetSdk = 28
-        const val minSdk = 21
+        const val minSdk = 24
     }
 
     object Dependency {
@@ -39,6 +39,7 @@ object Config {
         const val timber = "4.7.1"
         const val sanitizer = "0.4"
         const val teanity = "0.+"
+        const val materialDateTimePicker = "4.2.3"
     }
 
     object Build {

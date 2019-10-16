@@ -95,6 +95,11 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
     dataBinding {
         isEnabled = true
     }
@@ -114,6 +119,9 @@ dependencies {
     }
     implementation("com.facebook.stetho", "stetho", "1.5.0")
     implementation("com.android.support", "multidex", "1.0.3")
+
+    // UI
+    implementation("com.wdullaer", "materialdatetimepicker", Config.Dependency.materialDateTimePicker)
 
     // KOTLIN
     implementation(kotlin("stdlib-jdk7", version = Config.Dependency.kotlin))
