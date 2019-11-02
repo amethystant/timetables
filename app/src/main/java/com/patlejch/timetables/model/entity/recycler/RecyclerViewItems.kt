@@ -19,5 +19,29 @@ class LoadingRvItem(
     fun failActionClicked() = failAction()
 
     override fun sameAs(other: GenericRvItem) = other.compareToSafe<LoadingRvItem> { true }
+
     override fun contentSameAs(other: GenericRvItem) = other.compareToSafe<LoadingRvItem> { true }
+}
+
+data class EventItem(
+    val id: Long,
+    val title: String
+) : GenericRvItem() {
+
+    override val layoutRes = R.layout.item_event
+
+    override fun contentSameAs(other: GenericRvItem) = this == other
+
+    override fun sameAs(other: GenericRvItem) = compareToSafe<EventItem> { id == it.id }
+}
+
+data class TimeSlotItem(
+    val hour: Int
+) : GenericRvItem() {
+
+    override val layoutRes = R.layout.item_time_slot
+
+    override fun contentSameAs(other: GenericRvItem) = true
+
+    override fun sameAs(other: GenericRvItem) = compareToSafe<TimeSlotItem> { hour == it.hour }
 }

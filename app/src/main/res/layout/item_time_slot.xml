@@ -7,23 +7,30 @@
     <data>
 
         <variable
+            name="item"
+            type="com.patlejch.timetables.model.entity.recycler.TimeSlotItem" />
+
+        <variable
             name="viewModel"
             type="com.patlejch.timetables.ui.home.timetable.TimetableViewModel" />
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
+        height="@{viewModel.dimensions.rowHeight}"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_height="200dp">
 
         <androidx.recyclerview.widget.RecyclerView
             itemBinding="@{viewModel.binding}"
-            items="@{viewModel.items}"
+            items="@{viewModel.timeSlots.get(item.getHour())}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_time_slot" />
+            tools:listitem="@layout/item_event" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
 </layout>
