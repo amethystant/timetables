@@ -3,7 +3,7 @@ package com.patlejch.timetables.ui.home
 import android.view.MenuItem
 import com.patlejch.timetables.R
 import com.patlejch.timetables.model.base.TimetablesViewModel
-import com.patlejch.timetables.model.entity.ui.TableDimensions
+import com.patlejch.timetables.model.entity.ui.TableParams
 import com.patlejch.timetables.model.event.ViewEvents
 import com.patlejch.timetables.util.add
 import com.skoumal.teanity.util.KObservableField
@@ -11,13 +11,13 @@ import com.skoumal.teanity.util.Observer
 import java.text.SimpleDateFormat
 import java.util.*
 
-class HomeViewModel(val dimensions: TableDimensions) : TimetablesViewModel() {
+class HomeViewModel(val params: TableParams) : TimetablesViewModel() {
 
     companion object {
         val dateFormat = SimpleDateFormat("d MMMM yyyy", Locale.UK)
     }
 
-    val startingHour = 9
+    val startingHour get() = params.startingHour
 
     val date = KObservableField(Date())
     val dateFormatted = Observer(date) { dateFormat.format(date.value) }

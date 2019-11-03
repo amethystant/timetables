@@ -8,6 +8,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.Group
 import androidx.core.view.isInvisible
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.request.RequestOptions
 import com.skoumal.teanity.databinding.applyTransformation
 import com.patlejch.timetables.GlideApp
@@ -78,4 +80,11 @@ fun View.setMinWidth(minWidth: Int) {
 @BindingAdapter("minHeight")
 fun View.setMinHeight(minHeight: Int) {
     minimumHeight = minHeight
+}
+
+@BindingAdapter("snap")
+fun RecyclerView.setSnap(on: Boolean) {
+    if (on) {
+        PagerSnapHelper().attachToRecyclerView(this)
+    }
 }

@@ -5,31 +5,34 @@ import com.patlejch.timetables.BR
 import com.patlejch.timetables.model.base.TimetablesViewModel
 import com.patlejch.timetables.model.entity.recycler.EventItem
 import com.patlejch.timetables.model.entity.recycler.TimeSlotItem
-import com.patlejch.timetables.model.entity.ui.TableDimensions
+import com.patlejch.timetables.model.entity.ui.TableParams
 import com.skoumal.teanity.databinding.GenericRvItem
 import com.skoumal.teanity.extensions.bindingOf
 import com.skoumal.teanity.extensions.diffListOf
-import com.skoumal.teanity.extensions.toPx
 import com.skoumal.teanity.util.DiffObservableList
 
-class TimetableViewModel(val dimensions: TableDimensions) : TimetablesViewModel() {
+class TimetableViewModel(val params: TableParams) : TimetablesViewModel() {
 
     val items = diffListOf<GenericRvItem>()
     val binding = bindingOf<GenericRvItem> {
         it.bindExtra(BR.viewModel, this@TimetableViewModel)
     }
 
-    val startingHour = 9 // fixme make this global
+    private val startingHour get() = params.startingHour
+    private val endingHour get() = startingHour + params.rowCount
 
     val timeSlots = SparseArray<DiffObservableList<GenericRvItem>>()
 
     init {
-        items.update((startingHour .. startingHour + dimensions.rowCount).map { TimeSlotItem(it) })
+        items.update((startingHour..endingHour).map { TimeSlotItem(it) })
 
-        timeSlots.put(startingHour, diffListOf())
-        timeSlots[startingHour].add(EventItem(1, "Test item"))
+        for (i in startingHour .. endingHour) {
+            timeSlots.put(i, diffListOf())
+        }
+
+        timeSlots[startingHour].add(EventItem(1, "Test item", startingHour))
+        timeSlots[startingHour].add(EventItem(2, "Test item 2", startingHour))
+        timeSlots[startingHour + 2].add(EventItem(3, "Test item 3", startingHour + 2))
     }
-
-    fun getWidth(item: EventItem) = 150.toPx() //todo
 
 }

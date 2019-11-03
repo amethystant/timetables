@@ -25,7 +25,8 @@ class LoadingRvItem(
 
 data class EventItem(
     val id: Long,
-    val title: String
+    val title: String,
+    val hour: Int
 ) : GenericRvItem() {
 
     override val layoutRes = R.layout.item_event

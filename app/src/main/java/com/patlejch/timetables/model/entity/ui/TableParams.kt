@@ -1,7 +1,8 @@
 package com.patlejch.timetables.model.entity.ui
 
-data class TableDimensions(
+data class TableParams(
     val leftColumnWidth: Int,
     val rowHeight: Int,
-    val rowCount: Int
+    val rowCount: Int,
+    val startingHour: Int
 )

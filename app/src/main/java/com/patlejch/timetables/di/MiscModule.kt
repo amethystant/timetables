@@ -8,6 +8,6 @@ import org.koin.dsl.module
 val miscModule = module {
 
     single { get<Context>().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager }
-    single { Static.tableDimensions }
+    single { Static.tableParams }
 
 }

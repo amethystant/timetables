@@ -17,14 +17,13 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        width="@{viewModel.getWidth(item)}"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/margin_generic">
+            android:layout_margin="@dimen/margin_generic_half">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

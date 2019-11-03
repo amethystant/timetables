@@ -17,7 +17,7 @@
     </data>
 
     <FrameLayout
-        height="@{viewModel.dimensions.rowHeight}"
+        height="@{viewModel.params.rowHeight}"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_height="200dp">
@@ -25,9 +25,13 @@
         <androidx.recyclerview.widget.RecyclerView
             itemBinding="@{viewModel.binding}"
             items="@{viewModel.timeSlots.get(item.getHour())}"
+            snap="@{true}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clipToPadding="false"
             android:orientation="horizontal"
+            android:paddingStart="@dimen/margin_generic"
+            android:paddingEnd="@dimen/margin_generic_triple"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_event" />
 

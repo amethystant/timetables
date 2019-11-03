@@ -47,18 +47,18 @@
                 android:layout_height="match_parent">
 
                 <com.patlejch.timetables.ui.home.HomeLeftColumnView
-                    rowCount="@{viewModel.dimensions.rowCount}"
-                    rowHeight="@{viewModel.dimensions.rowHeight}"
+                    rowCount="@{viewModel.params.rowCount}"
+                    rowHeight="@{viewModel.params.rowHeight}"
                     startingHour="@{viewModel.startingHour}"
-                    width="@{viewModel.dimensions.leftColumnWidth}"
+                    width="@{viewModel.params.leftColumnWidth}"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     tools:layout_height="match_parent"
                     tools:layout_width="40dp" />
 
                 <fragment
-                    android:name="com.patlejch.timetables.ui.home.timetable.TimetableFragment"
                     android:id="@+id/fragment_tmp"
+                    android:name="com.patlejch.timetables.ui.home.timetable.TimetableFragment"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1" />
