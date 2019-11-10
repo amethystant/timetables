@@ -10,8 +10,10 @@ import com.skoumal.teanity.databinding.GenericRvItem
 import com.skoumal.teanity.extensions.bindingOf
 import com.skoumal.teanity.extensions.diffListOf
 import com.skoumal.teanity.util.DiffObservableList
+import java.text.SimpleDateFormat
+import java.util.*
 
-class TimetableViewModel(val params: TableParams) : TimetablesViewModel() {
+class TimetableViewModel(val day: Date, val params: TableParams) : TimetablesViewModel() {
 
     val items = diffListOf<GenericRvItem>()
     val binding = bindingOf<GenericRvItem> {
@@ -26,11 +28,17 @@ class TimetableViewModel(val params: TableParams) : TimetablesViewModel() {
     init {
         items.update((startingHour..endingHour).map { TimeSlotItem(it) })
 
-        for (i in startingHour .. endingHour) {
+        for (i in startingHour..endingHour) {
             timeSlots.put(i, diffListOf())
         }
 
-        timeSlots[startingHour].add(EventItem(1, "Test item", startingHour))
+        timeSlots[startingHour].add(
+            EventItem(
+                1,
+                SimpleDateFormat("d MMMM yyyy", Locale.UK).format(day),
+                startingHour
+            )
+        )
         timeSlots[startingHour].add(EventItem(2, "Test item 2", startingHour))
         timeSlots[startingHour + 2].add(EventItem(3, "Test item 3", startingHour + 2))
     }

@@ -6,10 +6,11 @@ import com.patlejch.timetables.ui.home.timetable.TimetableViewModel
 import com.patlejch.timetables.ui.settings.SettingsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
+import java.util.*
 
 val viewModelModules = module {
     viewModel { MainViewModel() }
     viewModel { HomeViewModel(get()) }
     viewModel { SettingsViewModel() }
-    viewModel { TimetableViewModel(get()) }
+    viewModel { (date: Date) -> TimetableViewModel(date, get()) }
 }

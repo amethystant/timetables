@@ -11,6 +11,7 @@
 	<string name="home_title">Timetable</string>
 	<string name="home_today">Today</string>
 	<string name="home_select_date">Select date</string>
+	<string name="home_error_cannot_display">Cannot display the date you selected.</string>
 
 	<!-- SettingsFragment -->
 	<string name="settings_title">Settings</string>

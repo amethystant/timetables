@@ -122,6 +122,7 @@ dependencies {
 
     // UI
     implementation("com.wdullaer", "materialdatetimepicker", Config.Dependency.materialDateTimePicker)
+    implementation("androidx.viewpager2", "viewpager2", Config.Dependency.viewPager2)
 
     // KOTLIN
     implementation(kotlin("stdlib-jdk7", version = Config.Dependency.kotlin))

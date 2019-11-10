@@ -19,6 +19,9 @@ sealed class ViewEvents : ViewEvent() {
         }
 
     }
+
+    object DateSkipped : ViewEvents()
+
 }
 
 typealias OnSelectedListener = (year: Int, month: Int, day: Int) -> Unit

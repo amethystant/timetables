@@ -58,11 +58,11 @@
                     tools:layout_height="match_parent"
                     tools:layout_width="40dp" />
 
-                <fragment
-                    android:id="@+id/home_fragment_tmp"
-                    android:name="com.patlejch.timetables.ui.home.timetable.TimetableFragment"
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/home_view_pager"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/home_left_column" />
 
@@ -70,9 +70,9 @@
                     android:layout_width="8dp"
                     android:layout_height="0dp"
                     android:alpha=".2"
-                    app:layout_constraintBottom_toBottomOf="@id/home_fragment_tmp"
-                    app:layout_constraintStart_toStartOf="@id/home_fragment_tmp"
-                    app:layout_constraintTop_toTopOf="@id/home_fragment_tmp"
+                    app:layout_constraintBottom_toBottomOf="@id/home_view_pager"
+                    app:layout_constraintStart_toStartOf="@id/home_view_pager"
+                    app:layout_constraintTop_toTopOf="@id/home_view_pager"
                     app:srcCompat="@drawable/bg_gradient_left" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
