@@ -1,7 +1,6 @@
 package com.patlejch.timetables.ui
 
 import android.os.Bundle
-import com.patlejch.timetables.Config
 import com.patlejch.timetables.R
 import com.patlejch.timetables.databinding.ActivityMainBinding
 import com.patlejch.timetables.util.setupWith

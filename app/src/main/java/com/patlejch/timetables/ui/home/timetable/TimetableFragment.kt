@@ -7,8 +7,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import java.util.*
 
-class TimetableFragment private constructor() :
-    TimetablesFragment<TimetableViewModel, FragmentTimetableBinding>() {
+class TimetableFragment : TimetablesFragment<TimetableViewModel, FragmentTimetableBinding>() {
 
     companion object {
         fun newInstance(date: Date) = TimetableFragment().apply { day = date }
