@@ -21,6 +21,6 @@ class MainActivity : TeanityActivity<MainViewModel, ActivityMainBinding>() {
     }
 
     override fun consumeSystemWindowInsets(left: Int, top: Int, right: Int, bottom: Int) =
-        Insets(bottom = bottom)
+        Insets(left = left, bottom = bottom)
 
 }
