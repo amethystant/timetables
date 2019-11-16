@@ -31,7 +31,6 @@ class DailyTimetablesAdapter(date: Date, fragment: Fragment) :
     fun getPosition(date: Date) =
         (date.time.fromMilisToDays() - getDate(0).time.fromMilisToDays()).toInt()
 
-
     /**
      * @receiver must be the ViewPager2 instance this adapter is attached to
      * @param date the date to be displayed

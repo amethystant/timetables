@@ -5,7 +5,7 @@
     <color name="colorSecondary">#D81B60</color>
     <color name="colorSecondaryDark">#AB154C</color>
 
-    <color name="dividerGray">#888888</color>
+    <color name="dividerGray">#1F000000</color>
 
     <color name="colorTextInverse">@color/white</color>
     <color name="colorText">#1D1D1D</color>

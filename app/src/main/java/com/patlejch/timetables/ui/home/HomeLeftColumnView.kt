@@ -150,10 +150,10 @@ class HomeLeftColumnView : LinearLayoutCompat {
 
     private fun addSeparator() =
         View(context).apply {
-            setBackgroundColor(resources.getColor(R.color.colorTextInactive, null))
+            setBackgroundColor(resources.getColor(R.color.dividerGray, null))
             layoutParams = LayoutParams(
                 LayoutParams.MATCH_PARENT,
-                1
+                2
             )
             addView(this)
             rowsList.add(this)
