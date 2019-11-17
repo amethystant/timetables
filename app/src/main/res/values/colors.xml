@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorSecondary">#D81B60</color>
-    <color name="colorSecondaryDark">#AB154C</color>
+    <color name="colorPrimary">@color/purpleDeep</color>
+    <color name="colorPrimaryDark">@color/purpleDeepDark</color>
+    <color name="colorSecondary">@color/amber</color>
+    <color name="colorSecondaryDark">@color/amberDark</color>
 
     <color name="dividerGray">#1F000000</color>
 
@@ -14,4 +14,10 @@
     <color name="white">#FFF</color>
     <color name="black">#000</color>
     <color name="transparent">#00000000</color>
+
+    <color name="purpleDeep">#673AB7</color>
+    <color name="purpleDeepDark">#512DA8</color>
+    <color name="amber">#FFC107</color>
+    <color name="amberDark">#FFA000</color>
+
 </resources>
