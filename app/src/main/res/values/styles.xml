@@ -7,11 +7,10 @@
         <item name="colorAccent">@color/colorSecondary</item>
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="colorSecondaryVariant">@color/colorSecondaryDark</item>
+        <item name="android:fontFamily">@font/open_sans</item>
     </style>
 
-    <style name="ThemeFoundation.ExtraArgs" />
-
-    <style name="AppTheme" parent="ThemeFoundation.ExtraArgs" />
+    <style name="AppTheme" parent="ThemeFoundation" />
 
     <style name="AppBarLayoutTheme" parent="ThemeOverlay.AppCompat.Dark" />
 
