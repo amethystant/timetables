@@ -26,6 +26,8 @@ class LoadingRvItem(
 data class EventItem(
     val id: Long,
     val title: String,
+    val venue: String,
+    val titleLong: String?,
     val hour: Int
 ) : GenericRvItem() {
 

@@ -36,11 +36,25 @@ class TimetableViewModel(val day: Date, val params: TableParams) : TimetablesVie
             EventItem(
                 1,
                 SimpleDateFormat("d MMMM yyyy", Locale.UK).format(day),
+                "Great Hall 043",
+                "Title long",
                 startingHour
             )
         )
-        timeSlots[startingHour].add(EventItem(2, "Test item 2", startingHour))
-        timeSlots[startingHour + 2].add(EventItem(3, "Test item 3", startingHour + 2))
+        timeSlots[startingHour].add(EventItem(
+            2,
+            "Test item 2",
+            "Great Hall 043",
+            "Title long",
+            startingHour
+        ))
+        timeSlots[startingHour + 2].add(EventItem(
+            3,
+            "Test item 3",
+            "Great Hall 043",
+            "Title long",
+            startingHour + 2
+        ))
     }
 
 }

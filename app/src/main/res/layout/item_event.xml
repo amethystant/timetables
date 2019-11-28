@@ -18,7 +18,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_height="200dp"
+        tools:layout_width="400dp">
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -30,13 +32,41 @@
                 android:layout_height="match_parent">
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/event_venue"
+                    style="@style/Widget.Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_generic"
-                    android:text="@{item.title}"
+                    android:layout_marginStart="@dimen/margin_generic"
+                    android:layout_marginBottom="@dimen/margin_generic_half"
+                    android:text="@{item.venue}"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/event_title"
+                    app:layout_constraintVertical_chainStyle="packed"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Title" />
+                    tools:text="Great Hall 043" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/event_title"
+                    style="@style/Widget.Text.Inactive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toTopOf="@id/event_title_long"
+                    android:layout_marginBottom="@dimen/margin_generic_half"
+                    android:text="@{item.title}"
+                    app:layout_constraintStart_toStartOf="@id/event_venue"
+                    app:layout_constraintTop_toBottomOf="@id/event_venue"
+                    tools:text="CS-150" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/event_title_long"
+                    style="@style/Widget.Text.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{item.titleLong}"
+                    app:layout_constraintStart_toStartOf="@id/event_venue"
+                    app:layout_constraintTop_toBottomOf="@id/event_title"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:text="CS-150 Lecture" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
