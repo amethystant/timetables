@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/margin_generic_half"
-            tools:backgroundTint="@color/amber"
+            tools:backgroundTint="@color/amberBg"
             app:cardElevation="@dimen/margin_generic_quarter">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,7 +36,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/event_venue"
-                    style="@style/Widget.Text"
+                    style="@style/Widget.Text.Inactive"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_generic"
@@ -62,7 +62,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/event_title_long"
-                    style="@style/Widget.Text.Title"
+                    style="@style/Widget.Text.Title.Inactive"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{item.titleLong}"

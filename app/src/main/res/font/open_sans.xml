@@ -5,41 +5,21 @@
     <font
         app:font="@font/open_sans_regular"
         app:fontStyle="normal"
-        app:fontWeight="300"/>
+        android:fontWeight="400"/>
 
     <font
         app:font="@font/open_sans_semi_bold"
-        app:fontStyle="normal"
-        app:fontWeight="400"/>
+        android:fontStyle="normal"
+        android:fontWeight="500"/>
 
     <font
         app:font="@font/open_sans_bold"
-        app:fontStyle="normal"
-        app:fontWeight="500"/>
-
-    <font
-        app:font="@font/open_sans_bold"
-        app:fontStyle="normal"
-        app:fontWeight="700"/>
+        android:fontStyle="normal"
+        android:fontWeight="700"/>
 
     <font
         app:font="@font/open_sans_italic"
         app:fontStyle="italic"
-        app:fontWeight="300"/>
-
-    <font
-        app:font="@font/open_sans_semi_bold_italic"
-        app:fontStyle="italic"
-        app:fontWeight="400"/>
-
-    <font
-        app:font="@font/open_sans_bold_italic"
-        app:fontStyle="italic"
-        app:fontWeight="500"/>
-
-    <font
-        app:font="@font/open_sans_bold_italic"
-        app:fontStyle="italic"
-        app:fontWeight="700"/>
+        android:fontWeight="400"/>
 
 </font-family>
