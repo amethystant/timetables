@@ -6,6 +6,7 @@ import com.patlejch.timetables.model.base.TimetablesViewModel
 import com.patlejch.timetables.model.entity.recycler.EventItem
 import com.patlejch.timetables.model.entity.recycler.TimeSlotItem
 import com.patlejch.timetables.model.entity.ui.TableParams
+import com.patlejch.timetables.model.global.Static
 import com.skoumal.teanity.databinding.GenericRvItem
 import com.skoumal.teanity.extensions.bindingOf
 import com.skoumal.teanity.extensions.diffListOf
@@ -24,6 +25,8 @@ class TimetableViewModel(val day: Date, val params: TableParams) : TimetablesVie
     private val endingHour get() = startingHour + params.rowCount
 
     val timeSlots = SparseArray<DiffObservableList<GenericRvItem>>()
+
+    private val colors = mutableMapOf<String, Int>()
 
     init {
         items.update((startingHour..endingHour).map { TimeSlotItem(it) })
@@ -55,6 +58,13 @@ class TimetableViewModel(val day: Date, val params: TableParams) : TimetablesVie
             "Title long",
             startingHour + 2
         ))
+    }
+
+    fun getColor(item: EventItem): Int {
+        colors[item.title]?.let { return it }
+        val color = Static.randomItemColor()
+        colors[item.title] = color
+        return color
     }
 
 }

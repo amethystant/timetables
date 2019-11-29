@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">@color/purpleDeep</color>
-    <color name="colorPrimaryDark">@color/purpleDeepDark</color>
+    <color name="colorPrimaryDark">@color/purpleDeepDarker</color>
     <color name="colorSecondary">@color/amber</color>
-    <color name="colorSecondaryDark">@color/amberDark</color>
+    <color name="colorSecondaryDark">@color/amberDarker</color>
 
     <color name="dividerGray">#1F000000</color>
 
@@ -16,8 +16,27 @@
     <color name="transparent">#00000000</color>
 
     <color name="purpleDeep">#673AB7</color>
-    <color name="purpleDeepDark">#512DA8</color>
+    <color name="purpleDeepDarker">#512DA8</color>
     <color name="amber">#FFC107</color>
-    <color name="amberDark">#FFA000</color>
+    <color name="amberDarker">#FFA000</color>
+
+    <!-- colors used for items background on timetable,
+    based on the "100" variants on material color system -->
+    <color name="purpleBg">#E1BEE7</color>
+    <color name="purpleDeepBg">#D1C4E9</color>
+    <color name="indigoBg">#C5CAE9</color>
+    <color name="blueBg">#BBDEFB</color>
+    <color name="blueLightBg">#B3E5FC</color>
+    <color name="cyanBg">#B2EBF2</color>
+    <color name="tealBg">#B2DFDB</color>
+    <color name="greenBg">#C8E6C9</color>
+    <color name="greenLightBg">#DCEDC8</color>
+    <color name="limeBg">#F0F4C3</color>
+    <color name="yellowBg">#FFF9C4</color>
+    <color name="amberBg">#FFECB3</color>
+    <color name="orangeBg">#FFE0B2</color>
+    <color name="orangeDeepBg">#FFE0B2</color>
+    <color name="redBg">#FFCDD2</color>
+    <color name="pinkBg">#F8BBD0</color>
 
 </resources>

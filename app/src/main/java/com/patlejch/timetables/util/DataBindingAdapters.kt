@@ -1,5 +1,6 @@
 package com.patlejch.timetables.util
 
+import android.content.res.ColorStateList
 import android.view.MenuItem
 import android.view.View
 import androidx.databinding.BindingAdapter
@@ -7,6 +8,7 @@ import android.widget.ImageView
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.Group
+import androidx.core.content.ContextCompat
 import androidx.core.view.isInvisible
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -87,4 +89,9 @@ fun RecyclerView.setSnap(on: Boolean) {
     if (on) {
         PagerSnapHelper().attachToRecyclerView(this)
     }
+}
+
+@BindingAdapter("backgroundTintId")
+fun View.setBackgroundTintId(id: Int) {
+    backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(context, id))
 }

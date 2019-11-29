@@ -1,7 +1,9 @@
 package com.patlejch.timetables.model.global
 
+import com.patlejch.timetables.R
 import com.patlejch.timetables.model.entity.ui.TableParams
 import com.skoumal.teanity.extensions.toPx
+import kotlin.random.Random
 
 object Static {
 
@@ -9,4 +11,26 @@ object Static {
     val tableParams: TableParams by lazy {
         TableParams(56.toPx(), 128.toPx(), 9, 9)
     }
+
+    private val itemColors = listOf(
+        R.color.purpleBg,
+        R.color.blueLightBg,
+        R.color.blueBg,
+        R.color.cyanBg,
+        R.color.indigoBg,
+        R.color.purpleDeepBg,
+        R.color.tealBg,
+        R.color.greenBg,
+        R.color.greenLightBg,
+        R.color.limeBg,
+        R.color.yellowBg,
+        R.color.amberBg,
+        R.color.orangeBg,
+        R.color.orangeDeepBg,
+        R.color.redBg,
+        R.color.pinkBg
+    )
+
+    fun randomItemColor() = itemColors[Random.nextInt(0, itemColors.count())]
+
 }
