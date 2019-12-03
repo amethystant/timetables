@@ -32,6 +32,16 @@ fun setImageFromUrl(view: ImageView, url: String?, transformation: Int) {
 }
 
 @BindingAdapter("invisible")
+fun View.setInvisible(invisible: Boolean) {
+    visibility = if (invisible) View.INVISIBLE else View.VISIBLE
+}
+
+@BindingAdapter("invisibleUnless")
+fun View.setInvisibleUnless(invisibleUnless: Boolean) {
+    visibility = if (invisibleUnless.not()) View.INVISIBLE else View.VISIBLE
+}
+
+@BindingAdapter("invisible")
 fun setGroupInvisible(group: Group, invisible: Boolean) {
     group.isInvisible = invisible
     group.updatePreLayout(group.parent as ConstraintLayout)

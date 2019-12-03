@@ -10,9 +10,15 @@
         <item name="android:fontFamily">@font/open_sans</item>
     </style>
 
-    <style name="AppTheme" parent="ThemeFoundation" />
+    <style name="AppTheme" parent="ThemeFoundation">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
 
     <style name="AppBarLayoutTheme" parent="ThemeOverlay.AppCompat.Dark" />
+
+    <style name="AppBarLayoutTheme.White" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:backgroundTint">@color/white</item>
+    </style>
 
     <style name="ToolbarPopupTheme" parent="ThemeOverlay.AppCompat.Light" />
 

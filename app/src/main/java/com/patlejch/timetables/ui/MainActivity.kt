@@ -19,8 +19,4 @@ class MainActivity : TeanityActivity<MainViewModel, ActivityMainBinding>() {
 
         binding.bottomNavView.setupWith(navController)
     }
-
-    override fun consumeSystemWindowInsets(left: Int, top: Int, right: Int, bottom: Int) =
-        Insets(left = left, bottom = bottom)
-
 }
