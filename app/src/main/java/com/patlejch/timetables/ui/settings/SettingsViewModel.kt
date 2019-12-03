@@ -7,4 +7,6 @@ class SettingsViewModel : TimetablesViewModel() {
 
     val urlChanged = KObservableField(false)
 
+    val calendarUrl = KObservableField("https://www.lorem-ips.um/?d=olorsitamet")
+
 }
