@@ -1,5 +1,6 @@
 package com.patlejch.timetables.model.event
 
+import android.app.TimePickerDialog
 import com.skoumal.teanity.viewevents.ViewEvent
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import java.util.*
@@ -8,7 +9,7 @@ sealed class ViewEvents : ViewEvent() {
 
     class ShowDatePicker(
         date: Date,
-        onSelected: OnSelectedListener,
+        onSelected: OnDateSelectedListener,
         val minDate: Calendar? = null,
         val maxDate: Calendar? = null
     ) : ViewEvents() {
@@ -17,11 +18,18 @@ sealed class ViewEvents : ViewEvent() {
         val initialDate = Calendar.getInstance(Locale.UK)!!.apply {
             time = date
         }
-
     }
 
     object DateSkipped : ViewEvents()
 
+    class ShowTimePicker(
+        val hour: Int,
+        val minute: Int,
+        onSelected: OnTimeSelectedListener
+    ) : ViewEvents() {
+        val listener = TimePickerDialog.OnTimeSetListener { _, h, m -> onSelected(h, m) }
+    }
 }
 
-typealias OnSelectedListener = (year: Int, month: Int, day: Int) -> Unit
+typealias OnDateSelectedListener = (year: Int, month: Int, day: Int) -> Unit
+typealias OnTimeSelectedListener = (hour: Int, minute: Int) -> Unit

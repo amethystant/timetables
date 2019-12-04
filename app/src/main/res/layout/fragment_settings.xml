@@ -33,123 +33,138 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/settings_appbar"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/settings_url_title"
-            style="@style/Widget.Text.Emphasize.Inactive"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_generic_double"
-            android:layout_marginTop="@dimen/margin_generic"
-            android:text="@string/settings_url_title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/settings_appbar" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/settings_url_edit"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_generic"
-            android:hint="@string/settings_url_hint"
-            app:layout_constraintEnd_toStartOf="@id/settings_url_save"
-            app:layout_constraintStart_toStartOf="@id/settings_url_title"
-            app:layout_constraintTop_toBottomOf="@id/settings_url_title">
-
-            <com.google.android.material.textfield.TextInputEditText
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:singleLine="true"
-                android:text="@={viewModel.calendarUrl}"
-                tools:text="https://www.lorem-ips.um/?d=olorsitamet" />
+                android:paddingBottom="@dimen/margin_generic">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/settings_url_title"
+                    style="@style/Widget.Text.Emphasize.Inactive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_generic_double"
+                    android:layout_marginTop="@dimen/margin_generic"
+                    android:text="@string/settings_url_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/settings_url_save"
-            style="@style/Widget.Button.Text"
-            invisibleUnless="@{viewModel.urlChanged}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/save"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/settings_url_edit"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/settings_url_edit"
-            tools:visibility="invisible" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/settings_url_edit"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_generic"
+                    android:hint="@string/settings_url_hint"
+                    app:layout_constraintEnd_toStartOf="@id/settings_url_save"
+                    app:layout_constraintStart_toStartOf="@id/settings_url_title"
+                    app:layout_constraintTop_toBottomOf="@id/settings_url_title">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            invisible="@{viewModel.urlChanged}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:tint="@color/colorSecondaryDark"
-            app:layout_constraintBottom_toBottomOf="@id/settings_url_save"
-            app:layout_constraintEnd_toEndOf="@id/settings_url_save"
-            app:layout_constraintStart_toStartOf="@id/settings_url_save"
-            app:layout_constraintTop_toTopOf="@id/settings_url_save"
-            app:srcCompat="@drawable/ic_check_circle" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:singleLine="true"
+                        android:text="@={viewModel.calendarUrl}"
+                        tools:text="https://www.lorem-ips.um/?d=olorsitamet" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/settings_notifications_title"
-            style="@style/Widget.Text.Emphasize.Inactive"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_generic_double"
-            android:layout_marginTop="@dimen/margin_generic_double"
-            android:text="@string/settings_notifications_title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/settings_url_edit" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/settings_notifications_daily_time"
-            style="@style/Widget.Text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_generic_double"
-            android:layout_marginEnd="@dimen/margin_generic_double"
-            android:text="@string/settings_notifications_daily_time"
-            app:layout_constraintStart_toStartOf="@id/settings_notifications_title"
-            app:layout_constraintTop_toBottomOf="@id/settings_notifications_title" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/settings_url_save"
+                    style="@style/Widget.Button.Text"
+                    invisibleUnless="@{viewModel.urlChanged}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/save"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/settings_url_edit"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/settings_url_edit"
+                    tools:visibility="invisible" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/settings_notifications_daily_time_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_generic_double"
-            android:text="8:00"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/settings_notifications_daily_time"
-            tools:text="8:00" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    invisible="@{viewModel.urlChanged}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="@color/colorPrimaryDark"
+                    app:layout_constraintBottom_toBottomOf="@id/settings_url_save"
+                    app:layout_constraintEnd_toEndOf="@id/settings_url_save"
+                    app:layout_constraintStart_toStartOf="@id/settings_url_save"
+                    app:layout_constraintTop_toTopOf="@id/settings_url_save"
+                    app:srcCompat="@drawable/ic_check_circle" />
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/settings_notifications_daily_in_advance"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_generic"
-            android:text="@string/settings_notifications_daily_in_advance"
-            app:layout_constraintEnd_toEndOf="@id/settings_notifications_daily_time_button"
-            app:layout_constraintStart_toStartOf="@id/settings_notifications_daily_time"
-            app:layout_constraintTop_toBottomOf="@id/settings_notifications_daily_time" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/settings_notifications_title"
+                    style="@style/Widget.Text.Emphasize.Inactive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_generic_double"
+                    android:layout_marginTop="@dimen/margin_generic_double"
+                    android:text="@string/settings_notifications_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/settings_url_edit" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/settings_notifications_daily_info_icon"
-            android:layout_width="@dimen/margin_generic"
-            android:layout_height="@dimen/margin_generic"
-            android:layout_marginTop="@dimen/margin_generic"
-            app:layout_constraintStart_toStartOf="@id/settings_notifications_daily_in_advance"
-            app:layout_constraintTop_toBottomOf="@id/settings_notifications_daily_in_advance"
-            app:srcCompat="@drawable/ic_info"
-            app:tint="@color/colorTextInactive" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/settings_notifications_daily_time"
+                    style="@style/Widget.Text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_generic_double"
+                    android:layout_marginEnd="@dimen/margin_generic_double"
+                    android:text="@string/settings_notifications_daily_time"
+                    app:layout_constraintStart_toStartOf="@id/settings_notifications_title"
+                    app:layout_constraintTop_toBottomOf="@id/settings_notifications_title" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            style="@style/Widget.Text.Caption.Inactive"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_generic"
-            android:text="@string/settings_notifications_daily_explication"
-            app:layout_constraintBottom_toBottomOf="@id/settings_notifications_daily_info_icon"
-            app:layout_constraintStart_toEndOf="@id/settings_notifications_daily_info_icon"
-            app:layout_constraintTop_toTopOf="@id/settings_notifications_daily_info_icon" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/settings_notifications_daily_time_button"
+                    android:layout_width="wrap_content"
+                    android:onClick="@{() -> viewModel.selectNotificationTime()}"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_generic_double"
+                    android:text="@{viewModel.notificationTimeFormatted}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/settings_notifications_daily_time"
+                    tools:text="8:00" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/settings_notifications_daily_in_advance"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_generic"
+                    android:text="@string/settings_notifications_daily_in_advance"
+                    app:layout_constraintEnd_toEndOf="@id/settings_notifications_daily_time_button"
+                    app:layout_constraintStart_toStartOf="@id/settings_notifications_daily_time"
+                    app:layout_constraintTop_toBottomOf="@id/settings_notifications_daily_time" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/settings_notifications_daily_info_icon"
+                    android:layout_width="@dimen/margin_generic"
+                    android:layout_height="@dimen/margin_generic"
+                    android:layout_marginTop="@dimen/margin_generic"
+                    app:layout_constraintStart_toStartOf="@id/settings_notifications_daily_in_advance"
+                    app:layout_constraintTop_toBottomOf="@id/settings_notifications_daily_in_advance"
+                    app:srcCompat="@drawable/ic_info"
+                    app:tint="@color/colorTextInactive" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Widget.Text.Caption.Inactive"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_generic"
+                    android:text="@string/settings_notifications_daily_explication"
+                    app:layout_constraintBottom_toBottomOf="@id/settings_notifications_daily_info_icon"
+                    app:layout_constraintStart_toEndOf="@id/settings_notifications_daily_info_icon"
+                    app:layout_constraintTop_toTopOf="@id/settings_notifications_daily_info_icon" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
