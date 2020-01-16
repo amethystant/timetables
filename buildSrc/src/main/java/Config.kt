@@ -39,7 +39,6 @@ object Config {
         const val timber = "4.7.1"
         const val sanitizer = "0.4"
         const val teanity = "0.+"
-        const val materialDateTimePicker = "4.2.3"
         const val viewPager2 = "1.0.0-rc01"
     }
 
