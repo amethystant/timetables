@@ -1,5 +1,6 @@
 package com.patlejch.timetables.ui.home
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2
@@ -10,9 +11,7 @@ import com.patlejch.timetables.model.event.ViewEvents
 import com.skoumal.teanity.util.Insets
 import com.skoumal.teanity.viewevents.SnackbarEvent
 import com.skoumal.teanity.viewevents.ViewEvent
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.*
 
 class HomeFragment : TimetablesFragment<HomeViewModel, FragmentHomeBinding>() {
 
@@ -50,12 +49,8 @@ class HomeFragment : TimetablesFragment<HomeViewModel, FragmentHomeBinding>() {
         Insets(top = top)
 
     private fun showDatePicker(event: ViewEvents.ShowDatePicker) {
-        DatePickerDialog.newInstance(event.listener, event.initialDate).apply {
-            locale = Locale.UK
-            event.minDate?.let { minDate = it }
-            event.maxDate?.let { maxDate = it }
-            show(this@HomeFragment.requireActivity().supportFragmentManager, "DatePicker")
-        }
+        DatePickerDialog(requireContext(), event.listener, event.year, event.month, event.day)
+            .show()
     }
 
     private fun onDateSkipped() {

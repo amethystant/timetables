@@ -1,23 +1,25 @@
 package com.patlejch.timetables.model.event
 
+import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import com.skoumal.teanity.viewevents.ViewEvent
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import java.util.*
 
 sealed class ViewEvents : ViewEvent() {
 
     class ShowDatePicker(
         date: Date,
-        onSelected: OnDateSelectedListener,
-        val minDate: Calendar? = null,
-        val maxDate: Calendar? = null
+        onSelected: OnDateSelectedListener
     ) : ViewEvents() {
 
         val listener = DatePickerDialog.OnDateSetListener { _, y, m, d -> onSelected(y, m, d) }
-        val initialDate = Calendar.getInstance(Locale.UK)!!.apply {
+        private val calendar = Calendar.getInstance(Locale.UK)!!.apply {
             time = date
         }
+
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
     }
 
     object DateSkipped : ViewEvents()

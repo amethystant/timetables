@@ -121,7 +121,6 @@ dependencies {
     implementation("com.android.support", "multidex", "1.0.3")
 
     // UI
-    implementation("com.wdullaer", "materialdatetimepicker", Config.Dependency.materialDateTimePicker)
     implementation("androidx.viewpager2", "viewpager2", Config.Dependency.viewPager2)
 
     // KOTLIN
