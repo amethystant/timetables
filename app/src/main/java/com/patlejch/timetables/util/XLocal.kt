@@ -1,9 +1,6 @@
 package com.patlejch.timetables.util
 
-import com.patlejch.timetables.Config
 import java.util.*
-
-private val Int.string get() = Config.context.getString(this)
 
 operator fun Date.plus(days: Int): Date {
     val calendar = Calendar.getInstance()

@@ -11,6 +11,6 @@ import java.util.*
 val viewModelModules = module {
     viewModel { MainViewModel() }
     viewModel { HomeViewModel(get()) }
-    viewModel { SettingsViewModel() }
+    viewModel { SettingsViewModel(get(), get()) }
     viewModel { (date: Date) -> TimetableViewModel(date, get()) }
 }

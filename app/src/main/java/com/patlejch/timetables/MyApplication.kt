@@ -25,8 +25,8 @@ class MyApplication : MultiDexApplication() {
             modules(koinModules)
         }
 
-        val core = CrashlyticsCore.Builder().disabled(Constants.DEBUG).build()
-        Fabric.with(this, Crashlytics.Builder().core(core).build())
+        //val core = CrashlyticsCore.Builder().disabled(Constants.DEBUG).build()
+        //Fabric.with(this, Crashlytics.Builder().core(core).build())
 
         if (Constants.DEBUG) {
             Stetho.initializeWithDefaults(this)
@@ -47,11 +47,11 @@ class MyApplication : MultiDexApplication() {
                 return
             }
 
-            Crashlytics.log(priority, tag, message)
+            //Crashlytics.log(priority, tag, message)
 
-            if (t != null) {
-                Crashlytics.logException(t)
-            }
+            //if (t != null) {
+                //Crashlytics.logException(t)
+            //}
         }
     }
 }
