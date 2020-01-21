@@ -46,6 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <!-- fixme delete this and add regular recyclerview -->
                 <com.patlejch.timetables.ui.home.HomeLeftColumnView
                     android:id="@+id/home_left_column"
                     rowCount="@{viewModel.params.rowCount}"
@@ -54,8 +55,9 @@
                     width="@{viewModel.params.leftColumnWidth}"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:elevation="8dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_height="match_parent"
+                    tools:layout_height="wrap_content"
                     tools:layout_width="40dp" />
 
                 <androidx.viewpager2.widget.ViewPager2
@@ -65,15 +67,6 @@
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/home_left_column" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="8dp"
-                    android:layout_height="0dp"
-                    android:alpha=".2"
-                    app:layout_constraintBottom_toBottomOf="@id/home_view_pager"
-                    app:layout_constraintStart_toStartOf="@id/home_view_pager"
-                    app:layout_constraintTop_toTopOf="@id/home_view_pager"
-                    app:srcCompat="@drawable/bg_gradient_left" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

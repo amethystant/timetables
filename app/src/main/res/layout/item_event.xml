@@ -28,7 +28,7 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/margin_generic_half"
             tools:backgroundTint="@color/amberBg"
-            app:cardElevation="@dimen/margin_generic_quarter">
+            app:cardElevation="2dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

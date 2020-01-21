@@ -1,10 +1,12 @@
 package com.patlejch.timetables.ui.home
 
 import android.content.Context
+import android.graphics.Outline
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
+import android.view.ViewOutlineProvider
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
@@ -51,8 +53,17 @@ class HomeLeftColumnView : LinearLayoutCompat {
         init()
     }
 
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        outlineProvider = object : ViewOutlineProvider() {
+            override fun getOutline(view: View?, outline: Outline?) {
+                outline?.setRect(0, 0, w, h)
+            }
+        }
+    }
+
     private fun init() {
         orientation = VERTICAL
+        setBackgroundColor(resources.getColor(R.color.white, null))
 
         val dateTime = Calendar.getInstance().apply {
             set(Calendar.HOUR_OF_DAY, startingHour)

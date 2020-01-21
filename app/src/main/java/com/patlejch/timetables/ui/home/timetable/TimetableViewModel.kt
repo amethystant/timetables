@@ -22,7 +22,7 @@ class TimetableViewModel(val day: Date, val params: TableParams) : TimetablesVie
     }
 
     private val startingHour get() = params.startingHour
-    private val endingHour get() = startingHour + params.rowCount
+    private val endingHour get() = startingHour + params.rowCount - 1
 
     val timeSlots = SparseArray<DiffObservableList<GenericRvItem>>()
 

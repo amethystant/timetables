@@ -14,9 +14,10 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
-    <style name="AppBarLayoutTheme" parent="ThemeOverlay.AppCompat.Dark" />
+    <!-- todo change colors and fix shadow -->
+    <style name="AppBarLayoutTheme" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
 
-    <style name="AppBarLayoutTheme.White" parent="ThemeOverlay.AppCompat.Light">
+    <style name="AppBarLayoutTheme.White" parent="ThemeOverlay.MaterialComponents.ActionBar">
         <item name="android:backgroundTint">@color/white</item>
     </style>
 
