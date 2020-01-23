@@ -3,4 +3,13 @@
 
     <style name="Widget" />
 
+    <style name="Widget.Progress" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:indeterminate">true</item>
+        <item name="android:maxWidth">64dp</item>
+    </style>
+
+    <style name="Widget.Card" parent="Widget.MaterialComponents.CardView">
+        <item name="cardElevation">4dp</item>
+    </style>
+
 </resources>

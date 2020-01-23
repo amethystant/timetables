@@ -3,22 +3,29 @@
     <style name="ThemeFoundation" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorSecondary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="colorSecondaryVariant">@color/colorSecondaryDark</item>
+        <item name="colorSurface">@color/colorSurface</item>
+        <item name="android:colorBackground">@color/colorBackground</item>
         <item name="android:fontFamily">sans-serif</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+        <item name="colorOnBackground">@color/colorOnSurface</item>
+        <item name="shapeAppearanceMediumComponent">@style/Shape.MediumComponent</item>
     </style>
 
+    <!-- todo support for dark theme -->
     <style name="AppTheme" parent="ThemeFoundation">
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
-    <!-- todo change colors and fix shadow -->
     <style name="AppBarLayoutTheme" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
 
     <style name="AppBarLayoutTheme.White" parent="ThemeOverlay.MaterialComponents.ActionBar">
-        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:backgroundTint">@android:color/white</item>
     </style>
 
     <style name="ToolbarPopupTheme" parent="ThemeOverlay.AppCompat.Light" />

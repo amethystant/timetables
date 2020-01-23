@@ -42,16 +42,18 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="?colorSurface"
                 android:paddingBottom="@dimen/margin_generic">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_url_title"
-                    style="@style/Widget.Text.Emphasize.Inactive"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_generic_double"
                     android:layout_marginTop="@dimen/margin_generic"
                     android:text="@string/settings_url_title"
+                    android:textAppearance="@style/TextAppearance.Subtitle"
+                    android:textColor="@color/colorOnSurfaceVariant"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -105,35 +107,40 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_notifications_title"
-                    style="@style/Widget.Text.Emphasize.Inactive"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_generic_double"
                     android:layout_marginTop="@dimen/margin_generic_double"
                     android:text="@string/settings_notifications_title"
+                    android:textAppearance="@style/TextAppearance.Subtitle"
+                    android:textColor="@color/colorOnSurfaceVariant"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/settings_url_edit" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_notifications_daily_time"
-                    style="@style/Widget.Text"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_generic_double"
                     android:layout_marginEnd="@dimen/margin_generic_double"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:text="@string/settings_notifications_daily_time"
+                    android:textAppearance="@style/TextAppearance"
+                    app:layout_constraintEnd_toStartOf="@id/settings_notifications_daily_time_button"
+                    app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="@id/settings_notifications_title"
                     app:layout_constraintTop_toBottomOf="@id/settings_notifications_title" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_notifications_daily_time_button"
-                    style="@style/Widget.Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_generic_double"
                     android:background="?selectableItemBackground"
                     android:onClick="@{() -> viewModel.selectNotificationTime()}"
                     android:text="@{viewModel.notificationTimeFormatted}"
+                    android:textAppearance="@style/TextAppearance"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/settings_notifications_daily_time"
                     tools:text="8:00" />
@@ -145,6 +152,7 @@
                     android:layout_marginTop="@dimen/margin_generic"
                     android:checked="@={viewModel.notificationDayBefore}"
                     android:text="@string/settings_notifications_daily_in_advance"
+                    android:textAppearance="@style/TextAppearance"
                     app:layout_constraintEnd_toEndOf="@id/settings_notifications_daily_time_button"
                     app:layout_constraintStart_toStartOf="@id/settings_notifications_daily_time"
                     app:layout_constraintTop_toBottomOf="@id/settings_notifications_daily_time" />
@@ -157,14 +165,15 @@
                     app:layout_constraintStart_toStartOf="@id/settings_notifications_daily_in_advance"
                     app:layout_constraintTop_toBottomOf="@id/settings_notifications_daily_in_advance"
                     app:srcCompat="@drawable/ic_info"
-                    app:tint="@color/colorTextInactive" />
+                    app:tint="@color/colorOnSurfaceVariant" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Widget.Text.Caption.Inactive"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_generic"
                     android:text="@string/settings_notifications_daily_explication"
+                    android:textAppearance="@style/TextAppearance.Caption"
+                    android:textColor="@color/colorOnSurfaceVariant"
                     app:layout_constraintBottom_toBottomOf="@id/settings_notifications_daily_info_icon"
                     app:layout_constraintStart_toEndOf="@id/settings_notifications_daily_info_icon"
                     app:layout_constraintTop_toTopOf="@id/settings_notifications_daily_info_icon" />

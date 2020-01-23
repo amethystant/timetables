@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/purpleDeep</color>
-    <color name="colorPrimaryDark">@color/purpleDeepDarker</color>
-    <color name="colorSecondary">@color/amber</color>
-    <color name="colorSecondaryDark">@color/amberDarker</color>
+    <color name="colorPrimary">#283593</color>
+    <color name="colorPrimaryDark">#001064</color>
+    <color name="colorPrimaryVariant">#5f5fc4</color>
+    <color name="colorSecondary">#fdd835</color>
+    <color name="colorSecondaryDark">#c6a700</color>
 
     <color name="dividerGray">#1F000000</color>
 
-    <color name="colorTextInverse">@color/white</color>
-    <color name="colorText">#1D1D1D</color>
-    <color name="colorTextInactive">#6a6868</color>
+    <color name="colorSurface">@android:color/white</color>
+    <color name="colorBackground">#fefcfc</color>
 
-    <color name="white">#FFF</color>
-    <color name="black">#000</color>
-    <color name="transparent">#00000000</color>
+    <color name="colorOnPrimary">@android:color/white</color>
+    <color name="colorOnSecondary">@android:color/black</color>
 
-    <color name="purpleDeep">#673AB7</color>
-    <color name="purpleDeepDarker">#512DA8</color>
-    <color name="amber">#FFC107</color>
-    <color name="amberDarker">#FFA000</color>
+    <color name="colorOnSurface">#1D1D1D</color>
+    <color name="colorOnSurfaceVariant">#6a6868</color>
 
     <!-- colors used for items background on timetable,
     based on the "100" variants on material color system -->

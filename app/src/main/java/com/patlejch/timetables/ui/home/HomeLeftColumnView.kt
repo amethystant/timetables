@@ -63,7 +63,7 @@ class HomeLeftColumnView : LinearLayoutCompat {
 
     private fun init() {
         orientation = VERTICAL
-        setBackgroundColor(resources.getColor(R.color.white, null))
+        setBackgroundColor(resources.getColor(R.color.colorSurface, null))
 
         val dateTime = Calendar.getInstance().apply {
             set(Calendar.HOUR_OF_DAY, startingHour)
@@ -142,7 +142,7 @@ class HomeLeftColumnView : LinearLayoutCompat {
             TypedValue.COMPLEX_UNIT_PX,
             resources.getDimension(R.dimen.text_small)
         )
-        textView.setTextColor(resources.getColor(R.color.colorTextInactive, null))
+        textView.setTextColor(resources.getColor(R.color.colorOnSurfaceVariant, null))
         textView.gravity = Gravity.CENTER
 
         addView(textView)

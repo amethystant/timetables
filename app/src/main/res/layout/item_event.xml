@@ -23,12 +23,12 @@
         tools:layout_width="400dp">
 
         <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.Card"
             backgroundTintId="@{viewModel.getColor(item)}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/margin_generic_half"
-            tools:backgroundTint="@color/amberBg"
-            app:cardElevation="2dp">
+            tools:backgroundTint="@color/amberBg">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -36,12 +36,13 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/event_venue"
-                    style="@style/Widget.Text.Inactive"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_generic"
                     android:layout_marginBottom="@dimen/margin_generic_half"
                     android:text="@{item.venue}"
+                    android:textAppearance="@style/TextAppearance"
+                    android:textColor="@color/colorOnSurfaceVariant"
                     app:layout_constraintBottom_toTopOf="@id/event_title"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -50,11 +51,12 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/event_title"
-                    style="@style/Widget.Text.Inactive"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/margin_generic_half"
                     android:text="@{item.title}"
+                    android:textAppearance="@style/TextAppearance"
+                    android:textColor="@color/colorOnSurfaceVariant"
                     app:layout_constraintBottom_toTopOf="@id/event_title_long"
                     app:layout_constraintStart_toStartOf="@id/event_venue"
                     app:layout_constraintTop_toBottomOf="@id/event_venue"
@@ -62,10 +64,11 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/event_title_long"
-                    style="@style/Widget.Text.Title.Inactive"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{item.titleLong}"
+                    android:textAppearance="@style/TextAppearance.Title"
+                    android:textColor="@color/colorOnSurfaceVariant"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@id/event_venue"
                     app:layout_constraintTop_toBottomOf="@id/event_title"
