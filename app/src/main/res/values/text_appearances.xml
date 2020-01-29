@@ -5,6 +5,11 @@
         <item name="android:textColor">?colorOnSurface</item>
     </style>
 
+    <style name="TextAppearance.Mono">
+        <item name="android:fontFamily">@font/roboto_mono</item>
+        <item name="fontFamily">@font/roboto_mono</item>
+    </style>
+
     <style name="TextAppearance.Display" parent="TextAppearance.MaterialComponents.Headline5">
         <item name="android:textColor">?colorOnSurface</item>
         <item name="android:textStyle">bold</item>
@@ -15,13 +20,27 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="TextAppearance.Title.Mono">
+        <item name="android:fontFamily">@font/roboto_mono</item>
+        <item name="fontFamily">@font/roboto_mono</item>
+    </style>
+
     <style name="TextAppearance.Subtitle" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="android:textColor">?colorOnSurface</item>
-        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.Subtitle.Mono">
+        <item name="android:fontFamily">@font/roboto_mono</item>
+        <item name="fontFamily">@font/roboto_mono</item>
     </style>
 
     <style name="TextAppearance.Caption" parent="TextAppearance.MaterialComponents.Caption">
         <item name="android:textColor">?colorOnSurface</item>
+    </style>
+
+    <style name="TextAppearance.Caption.Mono">
+        <item name="android:fontFamily">@font/roboto_mono</item>
+        <item name="fontFamily">@font/roboto_mono</item>
     </style>
 
 </resources>

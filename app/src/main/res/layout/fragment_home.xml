@@ -55,7 +55,8 @@
                     width="@{viewModel.params.leftColumnWidth}"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:elevation="12dp"
+                    android:elevation="4dp"
+                    android:outlineProvider="bounds"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:layout_height="wrap_content"
                     tools:layout_width="40dp" />

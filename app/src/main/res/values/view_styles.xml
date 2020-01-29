@@ -9,7 +9,10 @@
     </style>
 
     <style name="Widget.Card" parent="Widget.MaterialComponents.CardView">
-        <item name="cardElevation">4dp</item>
+        <item name="android:elevation">4dp</item>
     </style>
+
+    <style name="Widget.BottomNav"
+        parent="Widget.MaterialComponents.BottomNavigationView.PrimarySurface" />
 
 </resources>

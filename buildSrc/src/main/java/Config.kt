@@ -3,17 +3,18 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
 object Config {
 
     object Android {
-        const val compileSdk = 28
-        const val targetSdk = 28
+        const val compileSdk = 29
+        const val targetSdk = 29
         const val minSdk = 24
     }
 
+    // todo update and sort all of this
     object Dependency {
         const val kotlin = "1.3.41"
         const val kotlinCoroutines = "1.2.2"
         const val appcompat = "1.1.0-rc01"
         const val ktx = "1.2.0-alpha02"
-        const val material = "1.1.0-alpha07"
+        const val material = "1.1.0-rc02"
         const val room = "2.1.0"
         const val lifecycle = "2.2.0-alpha02"
         const val navigation = "2.1.0-alpha06"
@@ -26,7 +27,7 @@ object Config {
         const val work = "2.1.0-rc01"
         const val animation = "1.1.0-alpha02"
         const val animationKtx = "1.0.0-alpha02"
-        const val constraintLayout = "2.0.0-beta2"
+        const val constraintLayout = "2.0.0-beta4"
         const val gradlePlugin = "3.4.0"
         const val koin = "2.0.1"
         const val retrofit = "2.6.0"

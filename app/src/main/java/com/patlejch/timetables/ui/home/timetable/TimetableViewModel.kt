@@ -39,8 +39,8 @@ class TimetableViewModel(val day: Date, val params: TableParams) : TimetablesVie
             EventItem(
                 1,
                 SimpleDateFormat("d MMMM yyyy", Locale.UK).format(day),
-                "Great Hall 043",
-                "Title long",
+                "Y Twyny",
+                "CS-115: Programming 2",
                 startingHour
             )
         )
@@ -48,14 +48,14 @@ class TimetableViewModel(val day: Date, val params: TableParams) : TimetablesVie
             2,
             "Test item 2",
             "Great Hall 043",
-            "Title long",
+            "CS-175: Modelling Computer Systems 2",
             startingHour
         ))
         timeSlots[startingHour + 2].add(EventItem(
             3,
             "Test item 3",
             "Great Hall 043",
-            "Title long",
+            "CS-135: Professional Issues 2",
             startingHour + 2
         ))
     }

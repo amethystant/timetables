@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="@{viewModel.insets.top}"
-            android:theme="@style/AppBarLayoutTheme.White"
+            android:theme="@style/AppBarLayoutTheme"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.Toolbar
@@ -52,8 +52,7 @@
                     android:layout_marginStart="@dimen/margin_generic_double"
                     android:layout_marginTop="@dimen/margin_generic"
                     android:text="@string/settings_url_title"
-                    android:textAppearance="@style/TextAppearance.Subtitle"
-                    android:textColor="@color/colorOnSurfaceVariant"
+                    android:textAppearance="@style/TextAppearance.Subtitle.Mono"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -112,8 +111,7 @@
                     android:layout_marginStart="@dimen/margin_generic_double"
                     android:layout_marginTop="@dimen/margin_generic_double"
                     android:text="@string/settings_notifications_title"
-                    android:textAppearance="@style/TextAppearance.Subtitle"
-                    android:textColor="@color/colorOnSurfaceVariant"
+                    android:textAppearance="@style/TextAppearance.Subtitle.Mono"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/settings_url_edit" />
 

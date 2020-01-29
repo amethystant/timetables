@@ -14,6 +14,7 @@
         <item name="colorOnSecondary">@color/colorOnSecondary</item>
         <item name="colorOnSurface">@color/colorOnSurface</item>
         <item name="colorOnBackground">@color/colorOnSurface</item>
+        <item name="shapeAppearanceSmallComponent">@style/Shape.SmallComponent</item>
         <item name="shapeAppearanceMediumComponent">@style/Shape.MediumComponent</item>
     </style>
 
@@ -22,7 +23,7 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
-    <style name="AppBarLayoutTheme" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+    <style name="AppBarLayoutTheme" parent="ThemeOverlay.MaterialComponents.ActionBar" />
 
     <style name="AppBarLayoutTheme.White" parent="ThemeOverlay.MaterialComponents.ActionBar">
         <item name="android:backgroundTint">@android:color/white</item>

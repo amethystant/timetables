@@ -34,9 +34,9 @@
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_nav_view"
+            style="@style/Widget.BottomNav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?colorSurface"
             android:paddingBottom="@{viewModel.insets.bottom}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
