@@ -82,7 +82,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="@{item.titleLong}"
-                    android:textAppearance="@style/TextAppearance.Title.Mono"
+                    android:textAppearance="@style/TextAppearance.Title"
                     android:textColor="@color/colorOnSurface"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintBottom_toBottomOf="parent"
