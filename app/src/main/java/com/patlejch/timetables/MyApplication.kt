@@ -3,11 +3,8 @@ package com.patlejch.timetables
 import android.util.Log
 import androidx.multidex.MultiDexApplication
 import com.chibatching.kotpref.Kotpref
-import com.crashlytics.android.Crashlytics
-import com.crashlytics.android.core.CrashlyticsCore
 import com.facebook.stetho.Stetho
 import com.patlejch.timetables.di.koinModules
-import io.fabric.sdk.android.Fabric
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
@@ -24,9 +21,6 @@ class MyApplication : MultiDexApplication() {
             androidContext(this@MyApplication)
             modules(koinModules)
         }
-
-        //val core = CrashlyticsCore.Builder().disabled(Constants.DEBUG).build()
-        //Fabric.with(this, Crashlytics.Builder().core(core).build())
 
         if (Constants.DEBUG) {
             Stetho.initializeWithDefaults(this)
@@ -46,12 +40,7 @@ class MyApplication : MultiDexApplication() {
             if (priority == Log.VERBOSE || priority == Log.DEBUG) {
                 return
             }
-
-            //Crashlytics.log(priority, tag, message)
-
-            //if (t != null) {
-                //Crashlytics.logException(t)
-            //}
+            // todo add crash reporting
         }
     }
 }

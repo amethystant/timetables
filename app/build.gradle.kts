@@ -114,9 +114,6 @@ dependencies {
     //androidTestImplementation("androidx.test", "runner", "1.1.1")
     //androidTestImplementation("androidx.test.espresso", "espresso-core", "3.1.1")
 
-    implementation("com.crashlytics.sdk.android", "crashlytics", Config.Dependency.crashlytics, ext = "aar") {
-        isTransitive = true
-    }
     implementation("com.facebook.stetho", "stetho", "1.5.0")
     implementation("com.android.support", "multidex", "1.0.3")
 
@@ -154,7 +151,6 @@ dependencies {
     // KAPTs
     kapt("com.squareup.moshi", "moshi-kotlin-codegen", Config.Dependency.moshi)
     kapt("com.github.bumptech.glide", "compiler", Config.Dependency.glide)
-    kapt("com.evernote", "android-state-processor", Config.Dependency.state)
     kapt("androidx.room", "room-compiler", Config.Dependency.room)
 }
 
