@@ -3,19 +3,28 @@ package com.patlejch.timetables.util
 import android.content.res.ColorStateList
 import android.view.MenuItem
 import android.view.View
+import android.widget.EditText
 import androidx.databinding.BindingAdapter
 import android.widget.ImageView
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.Group
 import androidx.core.content.ContextCompat
+import androidx.core.view.children
 import androidx.core.view.isInvisible
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
+import com.google.android.material.shape.CutCornerTreatment
+import com.google.android.material.shape.ShapeAppearanceModel
+import com.google.android.material.textfield.TextInputLayout
 import com.skoumal.teanity.databinding.applyTransformation
 import com.patlejch.timetables.GlideApp
+import com.patlejch.timetables.R
 import com.patlejch.timetables.ui.home.HomeLeftColumnView
+import kotlin.math.absoluteValue
 
 @BindingAdapter("url", "transformation", requireAll = false)
 fun setImageFromUrl(view: ImageView, url: String?, transformation: Int) {
@@ -104,4 +113,65 @@ fun RecyclerView.setSnap(on: Boolean) {
 @BindingAdapter("backgroundTintId")
 fun View.setBackgroundTintId(id: Int) {
     backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(context, id))
+}
+
+interface OnEnterListener {
+    fun onEnter()
+}
+
+@BindingAdapter("onEnter")
+fun EditText.setOnEnter(onEnterListener: OnEnterListener) {
+    setOnEditorActionListener { _, _, _ ->
+        onEnterListener.onEnter()
+        true
+    }
+}
+
+@BindingAdapter("error")
+fun TextInputLayout.setError(error: String?) {
+    setError(error)
+}
+
+@BindingAdapter("error")
+fun TextInputLayout.setError(error: Int) {
+    if (error == 0) {
+        setError("")
+    } else {
+        setError(resources.getString(error))
+    }
+}
+
+interface OnChipClosedListener {
+    fun onChipClosed(item: String)
+}
+
+@BindingAdapter("chips", "onChipClosed", requireAll = false)
+fun ChipGroup.setUp(items: List<String>, onChipClosedListener: OnChipClosedListener?) {
+    val chips = children.filterIsInstance<Chip>().toList()
+    val diff = chips.count() - items.count()
+    if (diff > 0) {
+        for (i in 0 until diff) {
+            removeView(chips.elementAt(i))
+        }
+    } else if (diff < 0) {
+        for (i in 0 until diff.absoluteValue) {
+            addView(Chip(context))
+        }
+    }
+
+    children.filterIsInstance<Chip>().forEachIndexed { i, chip ->
+        chip.apply {
+            text = items[i]
+            isCloseIconVisible = true
+            isCheckable = false
+            isClickable = false
+            shapeAppearanceModel = ShapeAppearanceModel.Builder()
+                .setAllCorners(CutCornerTreatment())
+                .setAllCornerSizes(resources.getDimension(R.dimen.radius_generic))
+                .build()
+            setOnCloseIconClickListener {
+                onChipClosedListener?.onChipClosed(items[i])
+            }
+        }
+    }
 }

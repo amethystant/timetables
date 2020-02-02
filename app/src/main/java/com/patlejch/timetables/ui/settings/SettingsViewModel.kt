@@ -1,7 +1,7 @@
 package com.patlejch.timetables.ui.settings
 
 import android.webkit.URLUtil
-import com.google.android.material.snackbar.Snackbar
+import androidx.databinding.ObservableArrayList
 import com.patlejch.timetables.Config
 import com.patlejch.timetables.R
 import com.patlejch.timetables.model.base.TimetablesViewModel
@@ -12,7 +12,6 @@ import com.skoumal.teanity.extensions.subscribeK
 import com.skoumal.teanity.rxbus.RxBus
 import com.skoumal.teanity.util.KObservableField
 import com.skoumal.teanity.util.Observer
-import com.skoumal.teanity.viewevents.SnackbarEvent
 import java.text.DateFormat
 import java.util.*
 
@@ -24,6 +23,10 @@ class SettingsViewModel(
     val urlChanged = KObservableField(false)
 
     val calendarUrl = KObservableField(config.calendarUrl)
+    val urlError = KObservableField(0)
+
+    val filter = KObservableField("")
+    val filters = ObservableArrayList<String>()
 
     private val notificationHour = KObservableField(0)
     private val notificationMinute = KObservableField(0)
@@ -77,27 +80,44 @@ class SettingsViewModel(
         notificationDayBefore.value = config.notificationDayBefore
     }
 
+    // section url
+
     fun saveUrlClicked() {
         val url = calendarUrl.value
         if (urlValid(url)) {
+            urlError.value = 0
             urlChanged.value = false
             config.updateCalendarUrl(url)
         } else {
-            SnackbarEvent(R.string.settings_url_invalid, Snackbar.LENGTH_LONG).publish()
+            urlError.value = R.string.settings_url_invalid
         }
     }
 
     private fun urlValid(url: String) = URLUtil.isValidUrl(url)
 
+    // section filters
+
+    fun addFilterClicked() {
+        val value = filter.value
+        if (filters.contains(value).not()) {
+            filters.add(value)
+        }
+        filter.value = ""
+    }
+
+    fun removeChipClicked(item: String) = filters.remove(item)
+
+    // section notifications
+
     fun selectNotificationTime() {
         ViewEvents.ShowTimePicker(
             notificationHour.value,
             notificationMinute.value,
-            ::onNotificationTimeSelected
+            ::notificationTimeSelected
         ).publish()
     }
 
-    private fun onNotificationTimeSelected(hour: Int, minute: Int) {
+    private fun notificationTimeSelected(hour: Int, minute: Int) {
         notificationHour.value = hour
         notificationMinute.value = minute
     }

@@ -40,10 +40,14 @@
             app:layout_constraintTop_toBottomOf="@id/settings_appbar">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/settings_layout_animated"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:animateLayoutChanges="true"
                 android:background="?colorSurface"
                 android:paddingBottom="@dimen/margin_generic">
+
+                <!-- section calendar url -->
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_url_title"
@@ -51,14 +55,20 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_generic_double"
                     android:layout_marginTop="@dimen/margin_generic"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:text="@string/settings_url_title"
                     android:textAppearance="@style/TextAppearance.Subtitle.Mono"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/settings_url_edit"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    error="@{viewModel.urlError}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_generic"
@@ -69,8 +79,11 @@
                     app:layout_constraintTop_toBottomOf="@id/settings_url_title">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        onEnter="@{() -> viewModel.saveUrlClicked()}"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:imeOptions="actionDone"
+                        android:inputType="textUri"
                         android:singleLine="true"
                         android:text="@={viewModel.calendarUrl}"
                         tools:text="https://www.lorem-ips.um/?d=olorsitamet" />
@@ -83,12 +96,12 @@
                     invisibleUnless="@{viewModel.urlChanged}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_generic_quarter"
                     android:layout_marginEnd="@dimen/margin_generic_half"
                     android:minWidth="0dp"
                     android:onClick="@{() -> viewModel.saveUrlClicked()}"
                     android:text="@string/save"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/settings_url_edit"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/settings_url_edit"
                     tools:visibility="invisible" />
@@ -104,16 +117,95 @@
                     app:layout_constraintTop_toTopOf="@id/settings_url_save"
                     app:srcCompat="@drawable/ic_check_circle" />
 
+                <!-- section filters -->
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/settings_filters_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_generic_double"
+                    android:layout_marginTop="@dimen/margin_generic_double"
+                    android:layout_marginEnd="@dimen/margin_generic_double"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/settings_filters_title"
+                    android:textAppearance="@style/TextAppearance.Subtitle.Mono"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/settings_url_edit" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/settings_filter_input"
+                    style="@style/Widget.TextInput"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_generic_double"
+                    android:layout_marginTop="@dimen/margin_generic"
+                    android:layout_marginEnd="@dimen/margin_generic_double"
+                    android:hint="@string/settings_filters_hint"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/settings_filters_title">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        onEnter="@{() -> viewModel.addFilterClicked()}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionGo"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:text="@={viewModel.filter}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/settings_no_filters"
+                    goneUnless="@{viewModel.filters.empty}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_generic_double"
+                    android:layout_marginTop="@dimen/margin_generic"
+                    android:layout_marginEnd="@dimen/margin_generic_double"
+                    android:text="@string/settings_filters_none"
+                    android:textAppearance="@style/TextAppearance.Caption"
+                    android:textColor="@color/colorOnSurfaceVariant"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/settings_filter_input" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/settings_filters_chips"
+                    chips="@{viewModel.filters}"
+                    onChipClosed="@{(item) -> viewModel.removeChipClicked(item)}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_generic_double"
+                    android:layout_marginEnd="@dimen/margin_generic_double"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/settings_no_filters" />
+
+                <!-- section notifications -->
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_notifications_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_generic_double"
-                    android:layout_marginTop="@dimen/margin_generic_double"
+                    android:layout_marginTop="@dimen/margin_generic"
+                    android:layout_marginEnd="@dimen/margin_generic_double"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:text="@string/settings_notifications_title"
                     android:textAppearance="@style/TextAppearance.Subtitle.Mono"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/settings_url_edit" />
+                    app:layout_constraintTop_toBottomOf="@id/settings_filters_chips" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_notifications_daily_time"
@@ -125,6 +217,7 @@
                     android:maxLines="1"
                     android:text="@string/settings_notifications_daily_time"
                     android:textAppearance="@style/TextAppearance"
+                    app:layout_constrainedWidth="true"
                     app:layout_constraintEnd_toStartOf="@id/settings_notifications_daily_time_button"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="@id/settings_notifications_title"
@@ -149,6 +242,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_generic"
                     android:checked="@={viewModel.notificationDayBefore}"
+                    android:maxLines="1"
                     android:text="@string/settings_notifications_daily_in_advance"
                     android:textAppearance="@style/TextAppearance"
                     app:layout_constraintEnd_toEndOf="@id/settings_notifications_daily_time_button"
@@ -166,13 +260,16 @@
                     app:tint="@color/colorOnSurfaceVariant" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_generic"
                     android:text="@string/settings_notifications_daily_explication"
                     android:textAppearance="@style/TextAppearance.Caption"
                     android:textColor="@color/colorOnSurfaceVariant"
+                    app:layout_constrainedWidth="true"
                     app:layout_constraintBottom_toBottomOf="@id/settings_notifications_daily_info_icon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toEndOf="@id/settings_notifications_daily_info_icon"
                     app:layout_constraintTop_toTopOf="@id/settings_notifications_daily_info_icon" />
 

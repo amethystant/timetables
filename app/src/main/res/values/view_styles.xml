@@ -13,6 +13,9 @@
     </style>
 
     <style name="Widget.BottomNav"
-        parent="Widget.MaterialComponents.BottomNavigationView.PrimarySurface" />
+        parent="Widget.MaterialComponents.BottomNavigationView.Colored" />
+
+    <style name="Widget.TextInput"
+        parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense" />
 
 </resources>

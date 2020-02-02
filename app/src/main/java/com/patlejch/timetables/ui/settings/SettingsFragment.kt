@@ -1,7 +1,10 @@
 package com.patlejch.timetables.ui.settings
 
+import android.animation.LayoutTransition
 import android.app.TimePickerDialog
+import android.os.Bundle
 import android.text.format.DateFormat
+import android.view.View
 import com.patlejch.timetables.R
 import com.patlejch.timetables.databinding.FragmentSettingsBinding
 import com.patlejch.timetables.model.base.TimetablesFragment
@@ -15,6 +18,11 @@ class SettingsFragment : TimetablesFragment<SettingsViewModel, FragmentSettingsB
     override val layoutRes = R.layout.fragment_settings
 
     override val viewModel: SettingsViewModel by sharedViewModel()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.settingsLayoutAnimated.layoutTransition?.enableTransitionType(LayoutTransition.CHANGING)
+    }
 
     override fun onEventDispatched(event: ViewEvent) {
         super.onEventDispatched(event)
