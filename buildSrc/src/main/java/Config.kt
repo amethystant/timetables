@@ -8,7 +8,6 @@ object Config {
         const val minSdk = 24
     }
 
-    // todo update and sort all of this
     object Dependency {
         const val kotlin = "1.3.41"
         const val kotlinCoroutines = "1.2.2"

@@ -14,4 +14,8 @@
         android:name="com.patlejch.timetables.ui.settings.SettingsFragment">
     </fragment>
 
+    <activity
+        android:id="@+id/setupActivity"
+        android:name="com.patlejch.timetables.ui.setup.SetupActivity" />
+
 </navigation>

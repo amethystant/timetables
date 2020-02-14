@@ -12,7 +12,11 @@
 
     <style name="TextAppearance.Display" parent="TextAppearance.MaterialComponents.Headline5">
         <item name="android:textColor">?colorOnSurface</item>
-        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.Display.Mono">
+        <item name="fontFamily">@font/roboto_mono</item>
+        <item name="android:fontFamily">@font/roboto_mono</item>
     </style>
 
     <style name="TextAppearance.Title" parent="TextAppearance.MaterialComponents.Headline6">

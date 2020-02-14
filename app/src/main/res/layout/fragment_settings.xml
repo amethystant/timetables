@@ -101,7 +101,6 @@
                     android:minWidth="0dp"
                     android:onClick="@{() -> viewModel.saveUrlClicked()}"
                     android:text="@string/save"
-                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/settings_url_edit"
                     tools:visibility="invisible" />

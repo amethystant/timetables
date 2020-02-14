@@ -21,7 +21,8 @@ class SettingsFragment : TimetablesFragment<SettingsViewModel, FragmentSettingsB
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.settingsLayoutAnimated.layoutTransition?.enableTransitionType(LayoutTransition.CHANGING)
+        binding.settingsLayoutAnimated.layoutTransition
+            ?.enableTransitionType(LayoutTransition.CHANGING)
     }
 
     override fun onEventDispatched(event: ViewEvent) {

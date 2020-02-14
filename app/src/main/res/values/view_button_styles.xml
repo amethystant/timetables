@@ -8,6 +8,8 @@
     </style>
 
     <style name="Widget.Button.Text" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
     </style>
 
     <style name="Widget.Button.Text.Iconified" parent="Widget.MaterialComponents.Button.TextButton.Icon">

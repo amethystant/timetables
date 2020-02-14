@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.patlejch.timetables.ui.setup.welcome.SetupWelcomeViewModel" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
+            android:background="@color/colorSurface">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/welcome_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_generic_double"
+                android:layout_marginTop="@dimen/margin_generic_triple"
+                android:layout_marginEnd="@dimen/margin_generic_double"
+                android:text="@string/welcome_title"
+                android:textAppearance="@style/TextAppearance.Display"
+                android:textColor="?colorOnPrimary"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/welcome_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_generic_double"
+                android:layout_marginTop="@dimen/margin_generic_double"
+                android:layout_marginEnd="@dimen/margin_generic_double"
+                android:text="@string/welcome_subtitle"
+                android:textAppearance="@style/TextAppearance"
+                android:textColor="@color/colorOnSurfaceVariant"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/welcome_title" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/welcome_url_layout"
+                style="@style/Widget.TextInput"
+                error="@{viewModel.error}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_generic_double"
+                android:layout_marginTop="@dimen/margin_generic"
+                android:layout_marginEnd="@dimen/margin_generic_double"
+                android:hint="@string/welcome_hint_url"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/welcome_subtitle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textUri"
+                    android:text="@={viewModel.url}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.Button.Text"
+                gone="@{viewModel.instructionsVisible}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_generic_double"
+                android:layout_marginTop="@dimen/margin_generic_quarter"
+                android:onClick="@{() -> viewModel.showInstructions()}"
+                android:text="@string/welcome_url_instructions_button"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/welcome_url_layout" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/welcome_instructions"
+                goneUnless="@{viewModel.instructionsVisible}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_generic_double"
+                android:layout_marginTop="@dimen/margin_generic"
+                android:layout_marginEnd="@dimen/margin_generic_double"
+                android:layout_marginBottom="@dimen/margin_generic"
+                android:text="@string/welcome_url_instructions"
+                android:textAppearance="@style/TextAppearance"
+                android:textColor="@color/colorOnSurfaceVariant"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/welcome_url_layout"
+                app:layout_constraintVertical_bias="0" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_generic"
+                android:layout_marginTop="@dimen/margin_generic_half"
+                android:onClick="@{() -> viewModel.next()}"
+                android:text="@string/setup_next"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/welcome_instructions"
+                app:layout_constraintVertical_bias="1" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

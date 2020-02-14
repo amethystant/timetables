@@ -7,6 +7,7 @@ import com.patlejch.timetables.R
 import com.patlejch.timetables.model.base.TimetablesViewModel
 import com.patlejch.timetables.model.event.SimpleRxBusEvents
 import com.patlejch.timetables.model.event.ViewEvents
+import com.patlejch.timetables.util.verifyUrl
 import com.skoumal.teanity.extensions.addOnPropertyChangedCallback
 import com.skoumal.teanity.extensions.subscribeK
 import com.skoumal.teanity.rxbus.RxBus
@@ -84,7 +85,7 @@ class SettingsViewModel(
 
     fun saveUrlClicked() {
         val url = calendarUrl.value
-        if (urlValid(url)) {
+        if (verifyUrl(url)) {
             urlError.value = 0
             urlChanged.value = false
             config.updateCalendarUrl(url)
@@ -92,8 +93,6 @@ class SettingsViewModel(
             urlError.value = R.string.settings_url_invalid
         }
     }
-
-    private fun urlValid(url: String) = URLUtil.isValidUrl(url)
 
     // section filters
 

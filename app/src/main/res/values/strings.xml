@@ -7,6 +7,16 @@
 	<!-- General -->
 	<string name="save">Save</string>
 
+	<!-- SetupActivity -->
+	<string name="setup_next">Next</string>
+	<string name="welcome_title">Welcome, College of Science student!</string>
+	<string name="welcome_subtitle">First, we need to do some setup in order to start syncing with your timetable. Please follow the instructions below.</string>
+	<string name="welcome_hint_url">Enter your calendar URL.</string>
+	<string name="welcome_url_instructions_button">How do I get one?</string>
+	<string name="welcome_url_instructions">1. Open your web browser and go to your timetable page on the Collge of Science intranet.\n\n2. Read the instructions below the timetable and copy the URL address of the link (long press). \n\n3. Go back to this app. Paste the content of your clipboard into the text input above.</string>
+	<string name="last_title">You\'re all set!</string>
+	<string name="last_subtitle">Take a look at Profile settings to adjust your preferences.</string>
+
 	<!-- HomeFragment -->
 	<string name="home_title">Timetable</string>
 	<string name="home_today">Today</string>
