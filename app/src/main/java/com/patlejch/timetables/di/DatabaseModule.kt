@@ -7,11 +7,11 @@ import org.koin.dsl.module
 
 val databaseModule = module {
     single { createDatabase(get()) }
-    single { createDbEntityDao(get()) }
+    single { createFilterDao(get()) }
 }
 
 fun createDatabase(context: Context): AppDatabase =
     Room.databaseBuilder(context, AppDatabase::class.java, AppDatabase.NAME).build()
 
-fun createDbEntityDao(db: AppDatabase) =
-    db.dbEntityDao()
+fun createFilterDao(db: AppDatabase) =
+    db.filterDao()

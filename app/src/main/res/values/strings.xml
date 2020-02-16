@@ -6,6 +6,7 @@
 
 	<!-- General -->
 	<string name="save">Save</string>
+	<string name="error_generic">An unexpected error occurred.</string>
 
 	<!-- SetupActivity -->
 	<string name="setup_next">Next</string>

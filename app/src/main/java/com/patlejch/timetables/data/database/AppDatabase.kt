@@ -2,12 +2,12 @@ package com.patlejch.timetables.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.patlejch.timetables.model.entity.internal.DbEntity
+import com.patlejch.timetables.model.entity.internal.Filter
 
 @Database(
     version = 1,
     entities = [
-        DbEntity::class
+        Filter::class
     ]
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -16,6 +16,6 @@ abstract class AppDatabase : RoomDatabase() {
         const val NAME = "database"
     }
 
-    abstract fun dbEntityDao(): DbEntityDao // todo delete this example entity & dao
+    abstract fun filterDao(): FilterDao
 
 }

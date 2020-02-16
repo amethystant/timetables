@@ -1,16 +1,18 @@
 package com.patlejch.timetables.ui.settings
 
-import android.webkit.URLUtil
-import androidx.databinding.ObservableArrayList
 import com.patlejch.timetables.Config
 import com.patlejch.timetables.R
+import com.patlejch.timetables.data.repository.FilterRepository
 import com.patlejch.timetables.model.base.TimetablesViewModel
-import com.patlejch.timetables.model.event.SimpleRxBusEvents
+import com.patlejch.timetables.model.entity.internal.Filter
+import com.patlejch.timetables.model.event.DataEvent
 import com.patlejch.timetables.model.event.ViewEvents
 import com.patlejch.timetables.util.verifyUrl
 import com.skoumal.teanity.extensions.addOnPropertyChangedCallback
 import com.skoumal.teanity.extensions.subscribeK
 import com.skoumal.teanity.rxbus.RxBus
+import com.skoumal.teanity.util.BaseDiffObservableList
+import com.skoumal.teanity.util.DiffObservableList
 import com.skoumal.teanity.util.KObservableField
 import com.skoumal.teanity.util.Observer
 import java.text.DateFormat
@@ -18,6 +20,7 @@ import java.util.*
 
 class SettingsViewModel(
     private val config: Config,
+    private val filterRepository: FilterRepository,
     rxBus: RxBus
 ) : TimetablesViewModel() {
 
@@ -27,7 +30,7 @@ class SettingsViewModel(
     val urlError = KObservableField(0)
 
     val filter = KObservableField("")
-    val filters = ObservableArrayList<String>()
+    val filters = DiffObservableList(StringDiffCallback)
 
     private val notificationHour = KObservableField(0)
     private val notificationMinute = KObservableField(0)
@@ -42,16 +45,18 @@ class SettingsViewModel(
     val notificationDayBefore = KObservableField(config.notificationDayBefore)
 
     init {
-        updateValues()
+        refreshValues()
+        refreshFilters()
 
-        rxBus.register(SimpleRxBusEvents.CALENDAR_URL_UPDATED).subscribeK { updateValues() }
-        rxBus.register(SimpleRxBusEvents.NOTIFICATION_TIME_UPDATED).subscribeK { updateValues() }
-        rxBus.register(SimpleRxBusEvents.NOTIFICATION_DAY_BEFORE_UPDATED).subscribeK {
-            updateValues()
+        rxBus.register<DataEvent.CalendarUrlUpdated>().subscribeK { refreshValues() }
+        rxBus.register<DataEvent.FiltersUpdated>().subscribeK { refreshFilters() }
+        rxBus.register<DataEvent.NotificationTimeUpdated>().subscribeK { refreshValues() }
+        rxBus.register<DataEvent.NotificationDayBeforeUpdated>().subscribeK {
+            refreshValues()
         }
 
         calendarUrl.addOnPropertyChangedCallback {
-            //config.updateCalendarUrl(it)
+            config.updateCalendarUrl(it)
             urlChanged.value = true
         }
 
@@ -68,7 +73,7 @@ class SettingsViewModel(
         )
     }
 
-    private fun updateValues() {
+    private fun refreshValues() {
         if (urlChanged.value.not()) {
             calendarUrl.value = config.calendarUrl
         }
@@ -96,15 +101,29 @@ class SettingsViewModel(
 
     // section filters
 
+    private fun refreshFilters() = launch {
+        filterRepository.fetch().onSuccess {
+            filters.update(it.map { it.filter })
+        }.snackbarOnFailure()
+    }
+
+    private fun saveFilters() = launch {
+        filterRepository.save(filters.map { Filter(it) }).snackbarOnFailure()
+    }
+
     fun addFilterClicked() {
         val value = filter.value
         if (filters.contains(value).not()) {
             filters.add(value)
         }
         filter.value = ""
+        saveFilters()
     }
 
-    fun removeChipClicked(item: String) = filters.remove(item)
+    fun removeChipClicked(item: String) {
+        filters.remove(item)
+        saveFilters()
+    }
 
     // section notifications
 
@@ -119,5 +138,10 @@ class SettingsViewModel(
     private fun notificationTimeSelected(hour: Int, minute: Int) {
         notificationHour.value = hour
         notificationMinute.value = minute
+    }
+
+    private object StringDiffCallback : BaseDiffObservableList.Callback<String> {
+        override fun areContentsTheSame(oldItem: String, newItem: String) = true
+        override fun areItemsTheSame(oldItem: String, newItem: String) = oldItem == newItem
     }
 }

@@ -1,7 +1,12 @@
 package com.patlejch.timetables.model.event
 
-object SimpleRxBusEvents {
-    const val CALENDAR_URL_UPDATED = 1100
-    const val NOTIFICATION_TIME_UPDATED = 1101
-    const val NOTIFICATION_DAY_BEFORE_UPDATED = 1102
+import com.skoumal.teanity.rxbus.RxBus
+
+object SimpleRxBusEvents {}
+
+sealed class DataEvent : RxBus.Event {
+    object CalendarUrlUpdated : DataEvent()
+    object FiltersUpdated : DataEvent()
+    object NotificationTimeUpdated : DataEvent()
+    object NotificationDayBeforeUpdated : DataEvent()
 }

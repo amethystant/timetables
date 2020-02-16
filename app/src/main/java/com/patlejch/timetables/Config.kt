@@ -1,7 +1,7 @@
 package com.patlejch.timetables
 
 import com.chibatching.kotpref.KotprefModel
-import com.patlejch.timetables.model.event.SimpleRxBusEvents
+import com.patlejch.timetables.model.event.DataEvent
 import com.skoumal.teanity.rxbus.RxBus
 
 class Config(private val rxBus: RxBus) : KotprefModel() {
@@ -28,17 +28,17 @@ class Config(private val rxBus: RxBus) : KotprefModel() {
 
     fun updateCalendarUrl(url: String) {
         calendarUrl = url
-        rxBus.post(SimpleRxBusEvents.CALENDAR_URL_UPDATED)
+        rxBus.post(DataEvent.CalendarUrlUpdated)
     }
 
     fun updateNotificationTime(time: NotificationTime) {
         notificationTime = time
-        rxBus.post(SimpleRxBusEvents.NOTIFICATION_TIME_UPDATED)
+        rxBus.post(DataEvent.NotificationTimeUpdated)
     }
 
     fun updateNotificationDayBefore(dayBefore: Boolean) {
         notificationDayBefore = dayBefore
-        rxBus.post(SimpleRxBusEvents.NOTIFICATION_DAY_BEFORE_UPDATED)
+        rxBus.post(DataEvent.NotificationDayBeforeUpdated)
     }
 
     fun isUrlSet() = calendarUrl.isNotBlank()
