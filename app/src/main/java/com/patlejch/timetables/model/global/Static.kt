@@ -7,9 +7,9 @@ import kotlin.random.Random
 
 object Static {
 
-    //todo consider generating values based on screen parameters
+    // todo consider generating values based on font size settings
     val tableParams: TableParams by lazy {
-        TableParams(56.toPx(), 128.toPx(), 9, 9)
+        TableParams(48.toPx(), 92.toPx(), 9, 9)
     }
 
     private val itemColors = listOf(
@@ -31,6 +31,6 @@ object Static {
         R.color.pinkBg
     )
 
-    fun randomItemColor() = itemColors[Random.nextInt(0, itemColors.count())]
-
+    fun randomItemColor(textSeed: String) = itemColors[Random(textSeed.hashCode())
+        .nextInt(0, itemColors.count())]
 }

@@ -12,5 +12,6 @@
     <dimen name="radius_generic">8dp</dimen>
 
     <dimen name="text_small">12sp</dimen>
+    <dimen name="text_small_fixed">12dp</dimen>
 
 </resources>

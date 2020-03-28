@@ -10,6 +10,8 @@ class Config(private val rxBus: RxBus) : KotprefModel() {
     var calendarUrl by stringPref(default = "", key = "calendarUrl")
         private set
 
+    var version by longPref(default = 0, key = "version")
+
     private var _notificationTime by stringPref(default = "0900", key = "notificationTime")
     var notificationTime: NotificationTime
         private set(value) {

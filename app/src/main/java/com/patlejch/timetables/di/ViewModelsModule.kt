@@ -13,9 +13,9 @@ import java.util.*
 
 val viewModelModules = module {
     viewModel { MainViewModel() }
-    viewModel { HomeViewModel(get()) }
+    viewModel { HomeViewModel(get(), get()) }
     viewModel { SettingsViewModel(get(), get(), get()) }
-    viewModel { (date: Date) -> TimetableViewModel(date, get()) }
+    viewModel { (date: Date) -> TimetableViewModel(date, get(), get(), get()) }
     viewModel { SetupViewModel() }
     viewModel { SetupWelcomeViewModel(get()) }
     viewModel { SetupLastViewModel() }

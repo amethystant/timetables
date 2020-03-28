@@ -1,10 +1,16 @@
 package com.patlejch.timetables.data.network
 
+import com.patlejch.timetables.model.entity.inbound.EventsResponse
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
-interface ApiServices
+interface ApiServices {
+
+    @GET("v1/events")
+    fun getEvents(
+        @Query("url") url: String,
+        @Query("version") currentVersion: Long
+    ): Deferred<Response<EventsResponse>>
+
+}

@@ -2,6 +2,7 @@ package com.patlejch.timetables.ui.home
 
 import android.view.MenuItem
 import com.patlejch.timetables.R
+import com.patlejch.timetables.data.repository.EventRepository
 import com.patlejch.timetables.model.base.TimetablesViewModel
 import com.patlejch.timetables.model.entity.ui.TableParams
 import com.patlejch.timetables.model.event.ViewEvents
@@ -12,7 +13,10 @@ import com.skoumal.teanity.util.Observer
 import java.text.SimpleDateFormat
 import java.util.*
 
-class HomeViewModel(val params: TableParams) : TimetablesViewModel() {
+class HomeViewModel(
+    val params: TableParams,
+    private val eventRepository: EventRepository
+) : TimetablesViewModel() {
 
     companion object {
         val dateFormat = SimpleDateFormat("d MMMM yyyy", Locale.UK)
@@ -22,6 +26,12 @@ class HomeViewModel(val params: TableParams) : TimetablesViewModel() {
 
     val date = KObservableField(Date())
     val dateFormatted = Observer(date) { dateFormat.format(date.value) }
+
+    init {
+        launch {
+            runCatching { eventRepository.fetchRemote() }
+        }
+    }
 
     fun nextDay() {
         date.value = date.value + 1

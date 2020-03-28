@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="TextAppearance" parent="TextAppearance.AppCompat.Body1">
         <item name="android:textColor">?colorOnSurface</item>
+    </style>
+
+    <style name="TextAppearance.FixedSize">
+        <item name="android:textSize" tools:ignore="SpUsage">14dp</item>
     </style>
 
     <style name="TextAppearance.Mono">
@@ -24,6 +28,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="TextAppearance.Title.FixedSize">
+        <item name="android:textSize" tools:ignore="SpUsage">20dp</item>
+    </style>
+
     <style name="TextAppearance.Title.Mono">
         <item name="android:fontFamily">@font/roboto_mono</item>
         <item name="fontFamily">@font/roboto_mono</item>
@@ -40,6 +48,10 @@
 
     <style name="TextAppearance.Caption" parent="TextAppearance.MaterialComponents.Caption">
         <item name="android:textColor">?colorOnSurface</item>
+    </style>
+
+    <style name="TextAppearance.Caption.FixedSize">
+        <item name="android:textSize" tools:ignore="SpUsage">12dp</item>
     </style>
 
     <style name="TextAppearance.Caption.Mono">

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true"/>
+    <!-- todo delet this ˇ ^ -->
+    <!--<domain-config >
+        <domain includeSubdomains="true">https://timetables.patlejch.co.uk</domain>
+        <trust-anchors>
+            <certificates src="@raw/cert" />
+        </trust-anchors>
+    </domain-config>-->
+</network-security-config>

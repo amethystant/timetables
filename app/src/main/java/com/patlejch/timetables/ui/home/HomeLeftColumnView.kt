@@ -140,7 +140,7 @@ class HomeLeftColumnView : LinearLayoutCompat {
 
         textView.setTextSize(
             TypedValue.COMPLEX_UNIT_PX,
-            resources.getDimension(R.dimen.text_small)
+            resources.getDimension(R.dimen.text_small_fixed)
         )
         textView.setTextColor(resources.getColor(R.color.colorOnSurfaceVariant, null))
         textView.gravity = Gravity.CENTER
