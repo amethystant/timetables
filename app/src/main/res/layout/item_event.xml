@@ -52,7 +52,7 @@
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1"
+                    app:layout_constraintVertical_chainStyle="packed"
                     tools:text="Great Hall 043" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -60,15 +60,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_generic"
-                    android:layout_marginBottom="@dimen/margin_generic_half"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="@{item.title}"
-                    android:textAppearance="@style/TextAppearance.Title.FixedSize"
+                    android:textAppearance="@style/TextAppearance.FixedSize"
+                    android:textStyle="bold"
                     android:textColor="@color/colorOnSurface"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/event_venue"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="@id/event_venue"
                     tools:text="CS-150 Lecture" />

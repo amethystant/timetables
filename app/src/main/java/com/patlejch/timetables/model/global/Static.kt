@@ -9,7 +9,7 @@ object Static {
 
     // todo consider generating values based on font size settings
     val tableParams: TableParams by lazy {
-        TableParams(48.toPx(), 92.toPx(), 9, 9)
+        TableParams(48.toPx(), 80.toPx(), 9, 9)
     }
 
     private val itemColors = listOf(

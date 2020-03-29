@@ -15,10 +15,10 @@ interface EventDao : BaseDao<Event> {
             fetchByDateString(date.dbFormat())
     }
 
-    @Query("select * from event")
+    @Query("select * from event where deleted = 0")
     suspend fun fetchAll(): List<Event>
 
-    @Query("select * from event where start like :dateString || '%'")
+    @Query("select * from event where deleted = 0 and start like :dateString || '%'")
     suspend fun fetchByDateString(dateString: String): List<Event>
 
     @Query("delete from event")

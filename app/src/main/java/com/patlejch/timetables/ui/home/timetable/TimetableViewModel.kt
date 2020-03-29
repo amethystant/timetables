@@ -50,7 +50,6 @@ class TimetableViewModel(
         refreshLocal()
 
         // todo:
-        // - fix some events out of place
         // - apply filters
         // - swipe refresh layout not working (maybe delete it altogether and replace with refreshing in onResume in parent fragment
         // - missing view on empty list
