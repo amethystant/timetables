@@ -34,6 +34,8 @@ class TimetableViewModel(
         it.bindExtra(BR.viewModel, this@TimetableViewModel)
     }
 
+    val empty = KObservableField(true)
+
     private val startingHour get() = params.startingHour
     private val endingHour get() = startingHour + params.rowCount - 1
 
@@ -55,7 +57,6 @@ class TimetableViewModel(
 
         // todo:
         // - fix date reset after returning to timetable
-        // - missing view on empty list
         // - add day of week to toolbar title
         // - https
 
@@ -92,6 +93,7 @@ class TimetableViewModel(
 
     private fun List<Event>.replaceList() {
         clearSlots()
+        empty.value = isEmpty()
         forEach {
             val hours = (it.endHour - it.startHour).let { if (it == 0) 1 else it }
             for (h in 0 until hours) {

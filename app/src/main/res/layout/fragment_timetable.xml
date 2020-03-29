@@ -24,6 +24,19 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_time_slot" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            goneUnless="@{viewModel.empty}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/timetable_empty"
+            android:textAppearance="@style/TextAppearance.Caption"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias=".4" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

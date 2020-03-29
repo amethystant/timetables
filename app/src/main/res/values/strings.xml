@@ -24,6 +24,9 @@
 	<string name="home_select_date">Select date</string>
 	<string name="home_error_cannot_display">Cannot display the date you selected.</string>
 
+	<!-- TimetableFragment -->
+	<string name="timetable_empty">No events on this day.</string>
+
 	<!-- SettingsFragment -->
 	<string name="settings_title">Profile</string>
 	<string name="settings_title_long">Profile settings</string>
