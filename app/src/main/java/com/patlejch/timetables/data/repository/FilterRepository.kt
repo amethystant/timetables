@@ -13,15 +13,11 @@ class FilterRepository(
 ) {
 
     suspend fun save(filters: List<Filter>) = withContext(Dispatchers.IO) {
-        runCatching {
-            filterDao.overwriteList(filters)
-            rxBus.post(DataEvent.FiltersUpdated)
-        }
+        filterDao.overwriteList(filters)
+        rxBus.post(DataEvent.FiltersUpdated)
     }
 
     suspend fun fetch() = withContext(Dispatchers.IO) {
-        runCatching {
-            filterDao.fetchAll()
-        }
+        filterDao.fetchAll()
     }
 }

@@ -3,8 +3,10 @@ package com.patlejch.timetables.ui.home.timetable
 import android.util.SparseArray
 import com.patlejch.timetables.BR
 import com.patlejch.timetables.data.repository.EventRepository
+import com.patlejch.timetables.data.repository.FilterRepository
 import com.patlejch.timetables.model.base.TimetablesViewModel
 import com.patlejch.timetables.model.entity.inbound.Event
+import com.patlejch.timetables.model.entity.internal.Filter
 import com.patlejch.timetables.model.entity.recycler.EventItem
 import com.patlejch.timetables.model.entity.recycler.TimeSlotItem
 import com.patlejch.timetables.model.entity.ui.TableParams
@@ -23,6 +25,7 @@ class TimetableViewModel(
     private val day: Date,
     val params: TableParams,
     private val eventRepository: EventRepository,
+    private val filterRepository: FilterRepository,
     rxBus: RxBus
 ) : TimetablesViewModel() {
 
@@ -35,6 +38,7 @@ class TimetableViewModel(
     private val endingHour get() = startingHour + params.rowCount - 1
 
     private val colors = mutableMapOf<String, Int>()
+    private var filters = listOf<Filter>()
 
     val timeSlots = SparseArray<DiffObservableList<GenericRvItem>>()
 
@@ -47,28 +51,39 @@ class TimetableViewModel(
             timeSlots.put(i, diffListOf())
         }
 
-        refreshLocal()
+        filtersUpdated()
 
         // todo:
-        // - apply filters
+        // - fix date reset after returning to timetable
         // - missing view on empty list
+        // - refresh on url change
         // - https
-        
+
+        rxBus.register<DataEvent.FiltersUpdated>().subscribeK {
+            filtersUpdated()
+        }
+
         rxBus.register<DataEvent.EventsUpdated>().subscribeK {
             refreshLocal()
         }
     }
 
-    fun refreshRemote() = launch {
+    private fun filtersUpdated() = launch {
         runCatching {
-            eventRepository.fetchByDateRemote(day).replaceList()
-        }.snackbarOnFailure()
-        refreshing.value = false
+            filters = filterRepository.fetch()
+            refreshLocal()
+        }
     }
 
     private fun refreshLocal() = launch {
         runCatching {
-            eventRepository.fetchByDate(day).replaceList()
+            var events = eventRepository.fetchByDate(day)
+            filters.forEach { filter ->
+                events = events.filter {
+                    it.summary.contains(filter.filter).not()
+                }
+            }
+            events.replaceList()
         }.snackbarOnFailure()
         refreshing.value = false
     }

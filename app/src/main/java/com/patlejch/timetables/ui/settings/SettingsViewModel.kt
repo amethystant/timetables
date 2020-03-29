@@ -102,13 +102,15 @@ class SettingsViewModel(
     // section filters
 
     private fun refreshFilters() = launch {
-        filterRepository.fetch().onSuccess {
-            filters.update(it.map { it.filter })
+        runCatching {
+            filters.update(filterRepository.fetch().map { it.filter })
         }.snackbarOnFailure()
     }
 
     private fun saveFilters() = launch {
-        filterRepository.save(filters.map { Filter(it) }).snackbarOnFailure()
+        runCatching {
+            filterRepository.save(filters.map { Filter(it) })
+        }.snackbarOnFailure()
     }
 
     fun addFilterClicked() {
