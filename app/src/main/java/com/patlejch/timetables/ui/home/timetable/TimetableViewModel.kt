@@ -2,8 +2,8 @@ package com.patlejch.timetables.ui.home.timetable
 
 import android.util.SparseArray
 import com.patlejch.timetables.BR
-import com.patlejch.timetables.data.repository.EventRepository
 import com.patlejch.timetables.data.repository.FilterRepository
+import com.patlejch.timetables.data.usecase.GetEventsFilteredUseCase
 import com.patlejch.timetables.model.base.TimetablesViewModel
 import com.patlejch.timetables.model.entity.inbound.Event
 import com.patlejch.timetables.model.entity.internal.Filter
@@ -24,7 +24,7 @@ import java.util.*
 class TimetableViewModel(
     private val day: Date,
     val params: TableParams,
-    private val eventRepository: EventRepository,
+    private val getEventsFilteredUseCase: GetEventsFilteredUseCase,
     private val filterRepository: FilterRepository,
     rxBus: RxBus
 ) : TimetablesViewModel() {
@@ -73,13 +73,7 @@ class TimetableViewModel(
 
     private fun refreshLocal() = launch {
         runCatching {
-            var events = eventRepository.fetchByDate(day)
-            filters.forEach { filter ->
-                events = events.filter {
-                    it.summary.contains(filter.filter).not()
-                }
-            }
-            events.replaceList()
+            getEventsFilteredUseCase(day, filters).replaceList()
         }.snackbarOnFailure()
         refreshing.value = false
     }
