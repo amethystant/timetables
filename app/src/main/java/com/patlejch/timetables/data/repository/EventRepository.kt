@@ -46,4 +46,9 @@ class EventRepository(
     suspend fun fetchByDateRemote(date: Date) = fetchRemote().filter {
         it.start.startsWith(date.dbFormat())
     }
+
+    suspend fun wipe() = withContext(Dispatchers.IO) {
+        eventDao.delete()
+        rxBus.post(DataEvent.EventsUpdated)
+    }
 }

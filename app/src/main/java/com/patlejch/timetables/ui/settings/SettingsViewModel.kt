@@ -3,6 +3,7 @@ package com.patlejch.timetables.ui.settings
 import com.patlejch.timetables.Config
 import com.patlejch.timetables.R
 import com.patlejch.timetables.data.repository.FilterRepository
+import com.patlejch.timetables.data.usecase.UpdateCalendarUrlUseCase
 import com.patlejch.timetables.model.base.TimetablesViewModel
 import com.patlejch.timetables.model.entity.internal.Filter
 import com.patlejch.timetables.model.event.DataEvent
@@ -21,6 +22,7 @@ import java.util.*
 class SettingsViewModel(
     private val config: Config,
     private val filterRepository: FilterRepository,
+    private val updateCalendarUrlUseCase: UpdateCalendarUrlUseCase,
     rxBus: RxBus
 ) : TimetablesViewModel() {
 
@@ -56,7 +58,7 @@ class SettingsViewModel(
         }
 
         calendarUrl.addOnPropertyChangedCallback {
-            config.updateCalendarUrl(it)
+            saveUrl(it)
             urlChanged.value = true
         }
 
@@ -88,12 +90,18 @@ class SettingsViewModel(
 
     // section url
 
+    private fun saveUrl(url: String) = launch {
+        runCatching {
+            updateCalendarUrlUseCase(url)
+        }
+    }
+
     fun saveUrlClicked() {
         val url = calendarUrl.value
         if (verifyUrl(url)) {
             urlError.value = 0
             urlChanged.value = false
-            config.updateCalendarUrl(url)
+            saveUrl(url)
         } else {
             urlError.value = R.string.settings_url_invalid
         }

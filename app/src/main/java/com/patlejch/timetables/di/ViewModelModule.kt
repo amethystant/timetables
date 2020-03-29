@@ -11,10 +11,10 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import java.util.*
 
-val viewModelModules = module {
+val viewModelModule = module {
     viewModel { MainViewModel() }
     viewModel { HomeViewModel(get(), get()) }
-    viewModel { SettingsViewModel(get(), get(), get()) }
+    viewModel { SettingsViewModel(get(), get(), get(), get()) }
     viewModel { (date: Date) -> TimetableViewModel(date, get(), get(), get(), get()) }
     viewModel { SetupViewModel() }
     viewModel { SetupWelcomeViewModel(get()) }
