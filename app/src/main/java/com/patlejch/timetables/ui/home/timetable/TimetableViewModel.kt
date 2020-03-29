@@ -55,10 +55,6 @@ class TimetableViewModel(
 
         filtersUpdated()
 
-        // todo:
-        // - fix date reset after returning to timetable
-        // - https
-
         rxBus.register<DataEvent.FiltersUpdated>().subscribeK {
             filtersUpdated()
         }

@@ -11,13 +11,13 @@ import com.patlejch.timetables.model.event.ViewEvents
 import com.skoumal.teanity.util.Insets
 import com.skoumal.teanity.viewevents.SnackbarEvent
 import com.skoumal.teanity.viewevents.ViewEvent
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.util.*
 
 class HomeFragment : TimetablesFragment<HomeViewModel, FragmentHomeBinding>() {
 
     override val layoutRes = R.layout.fragment_home
-    override val viewModel: HomeViewModel by viewModel()
+    override val viewModel: HomeViewModel by sharedViewModel()
 
     private var adapter: DailyTimetablesAdapter? = null
     private lateinit var viewPager: ViewPager2
@@ -26,7 +26,7 @@ class HomeFragment : TimetablesFragment<HomeViewModel, FragmentHomeBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         viewPager = binding.homeViewPager
-        adapter = DailyTimetablesAdapter(viewModel.date.value, this).also {
+        adapter = adapter ?: DailyTimetablesAdapter(viewModel.date.value, this).also {
             viewPager.adapter = it
             viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
