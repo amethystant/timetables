@@ -19,7 +19,7 @@ class HomeViewModel(
 ) : TimetablesViewModel() {
 
     companion object {
-        val dateFormat = SimpleDateFormat("d MMMM yyyy", Locale.UK)
+        val dateFormat = SimpleDateFormat("EEE d MMMM yyyy", Locale.UK)
     }
 
     val startingHour get() = params.startingHour

@@ -57,7 +57,6 @@ class TimetableViewModel(
 
         // todo:
         // - fix date reset after returning to timetable
-        // - add day of week to toolbar title
         // - https
 
         rxBus.register<DataEvent.FiltersUpdated>().subscribeK {
