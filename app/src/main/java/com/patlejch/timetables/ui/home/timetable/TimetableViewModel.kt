@@ -51,7 +51,6 @@ class TimetableViewModel(
 
         // todo:
         // - apply filters
-        // - swipe refresh layout not working (maybe delete it altogether and replace with refreshing in onResume in parent fragment
         // - missing view on empty list
         // - https
         

@@ -28,9 +28,7 @@ class HomeViewModel(
     val dateFormatted = Observer(date) { dateFormat.format(date.value) }
 
     init {
-        launch {
-            runCatching { eventRepository.fetchRemote() }
-        }
+        refreshRemote()
     }
 
     fun nextDay() {
@@ -39,6 +37,12 @@ class HomeViewModel(
 
     fun previousDay() {
         date.value = date.value - 1
+    }
+
+    fun refreshRemote() = launch {
+        runCatching {
+            eventRepository.fetchRemote()
+        }
     }
 
     private fun goToToday() {
