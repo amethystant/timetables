@@ -4,8 +4,8 @@ import com.patlejch.timetables.Config
 import com.patlejch.timetables.data.database.EventDao
 import com.patlejch.timetables.data.database.EventDao.Companion.fetchByDate
 import com.patlejch.timetables.data.network.ApiServices
+import com.patlejch.timetables.model.entity.inbound.EventsResponse
 import com.patlejch.timetables.model.event.DataEvent
-import com.patlejch.timetables.util.dbFormat
 import com.skoumal.teanity.rxbus.RxBus
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -28,14 +28,16 @@ class EventRepository(
     }
 
     suspend fun fetchRemote() = withContext(Dispatchers.IO) {
-        apiServices.getEvents(config.calendarUrl, config.version).await().body()!!.let {
-            if (it.version < config.version) {
-                eventDao.delete()
-            }
-            eventDao.insert(it.objects)
-            config.version = it.version
-            rxBus.post(DataEvent.EventsUpdated)
-            it.objects
+        apiServices.getEvents(config.calendarUrl, config.version).await().body()!!.run {
+            save()
+            eventDao.fetchAll()
+        }
+    }
+
+    suspend fun fetchChanges() = withContext(Dispatchers.IO) {
+        apiServices.getEvents(config.calendarUrl, config.version).await().body()!!.run {
+            save()
+            objects
         }
     }
 
@@ -43,12 +45,19 @@ class EventRepository(
         eventDao.fetchByDate(date)
     }
 
-    suspend fun fetchByDateRemote(date: Date) = fetchRemote().filter {
-        it.start.startsWith(date.dbFormat())
-    }
-
     suspend fun wipe() = withContext(Dispatchers.IO) {
         eventDao.delete()
         rxBus.post(DataEvent.EventsUpdated)
+    }
+
+    private suspend fun EventsResponse.save() = withContext(Dispatchers.IO) {
+        if (version < config.version) {
+            wipe()
+        }
+        eventDao.insert(objects)
+        config.version = version
+        if (objects.isNotEmpty()) {
+            rxBus.post(DataEvent.EventsUpdated)
+        }
     }
 }
