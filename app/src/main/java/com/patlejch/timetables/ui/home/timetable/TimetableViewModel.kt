@@ -20,6 +20,7 @@ import com.skoumal.teanity.rxbus.RxBus
 import com.skoumal.teanity.util.DiffObservableList
 import com.skoumal.teanity.util.KObservableField
 import java.util.*
+import kotlin.collections.ArrayList
 
 class TimetableViewModel(
     private val day: Date,
@@ -78,15 +79,15 @@ class TimetableViewModel(
         refreshing.value = false
     }
 
-    private fun clearSlots() = (startingHour..endingHour).forEach { timeSlots[it]?.clear() }
-
     private fun List<Event>.replaceList() {
-        clearSlots()
         empty.value = isEmpty()
+        val newTimeSlots = SparseArray<ArrayList<GenericRvItem>>()
+        (startingHour..endingHour).forEach { newTimeSlots.put(it, arrayListOf()) }
+
         forEach {
             val hours = (it.endHour - it.startHour).let { if (it == 0) 1 else it }
             for (h in 0 until hours) {
-                timeSlots[it.startHour + h]?.add(
+                newTimeSlots[it.startHour + h]?.add(
                     EventItem(
                         it.id,
                         it.summary,
@@ -96,6 +97,8 @@ class TimetableViewModel(
                 )
             }
         }
+
+        (startingHour..endingHour).forEach { timeSlots[it].update(newTimeSlots[it]) }
     }
 
     fun getColor(item: EventItem): Int {
