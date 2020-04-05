@@ -1,6 +1,9 @@
 package com.patlejch.timetables.util
 
+import android.content.res.Resources
 import android.webkit.URLUtil
+import com.patlejch.timetables.Constants
+import com.patlejch.timetables.R
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -17,6 +20,43 @@ fun Long.fromMilisToDays() = this / 1000 / 3600 / 24
 
 fun verifyUrl(url: String) = URLUtil.isValidUrl(url)
 
-private val dbFormat = SimpleDateFormat("yyyyMMdd", Locale.UK)
+private val dbFormatDay = SimpleDateFormat(Constants.DB_FORMAT_DAY, Locale.UK)
 
-fun Date.dbFormat() = dbFormat.format(this)
+private val dbFormatWhole = SimpleDateFormat(Constants.DB_FORMAT_WHOLE, Locale.UK)
+
+fun Date.dbFormatDay() = dbFormatDay.format(this)
+
+fun String.dateUtc() = dbFormatWhole.parse(this)
+
+fun String.calendarBritish() = Calendar.getInstance().apply {
+    time = dateUtc() ?: throw IllegalArgumentException("Unable to parse date.")
+    timeZone = timeZoneBritish
+}
+
+private val notificationFormatDay = SimpleDateFormat("d/M", Locale.UK).apply {
+    timeZone = timeZoneBritish
+}
+
+private val notificationFormatTime = SimpleDateFormat("HH:mm", Locale.UK).apply {
+    timeZone = timeZoneBritish
+}
+
+val timeZoneBritish = TimeZone.getTimeZone("Europe/London")
+
+infix fun Calendar.sameDayAs(other: Calendar) =
+    get(Calendar.DAY_OF_MONTH) == other.get(Calendar.DAY_OF_MONTH)
+            && get(Calendar.MONTH) == other.get(Calendar.MONTH)
+            && get(Calendar.YEAR) == other.get(Calendar.YEAR)
+
+fun Calendar.notificationFormat(resources: Resources): String {
+    val day = Calendar.getInstance(timeZoneBritish).let {
+        if (this sameDayAs it)
+            resources.getString(R.string.today)
+        else
+            notificationFormatDay.format(this)
+    }
+
+    val time = notificationFormatTime.format(this)
+
+    return "$day, $time"
+}

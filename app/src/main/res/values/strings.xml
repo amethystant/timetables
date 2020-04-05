@@ -7,6 +7,7 @@
 	<!-- General -->
 	<string name="save">Save</string>
 	<string name="error_generic">An unexpected error occurred.</string>
+	<string name="today">Today</string>
 
 	<!-- SetupActivity -->
 	<string name="setup_next">Next</string>
@@ -41,4 +42,16 @@
 	<string name="settings_notifications_daily_in_advance">Daily notifications on the day before</string>
 	<string name="settings_notifications_daily_explication">Notifications can be turned off in system settings.</string>
 
+	<!-- Notifications -->
+	<string name="channel_name_timetable_changes">Timetable changes</string>
+	<string name="channel_name_daily_notifications">Daily notifications</string>
+	<string name="notification_event_added_title">New event in timetable!</string>
+	<string name="notification_event_added_text">The following event was added to the timetable: %s @ %s</string>
+	<string name="notification_event_removed_title">An event was cancelled</string>
+	<string name="notification_event_removed_text">The following event was removed from the timetable: %s @ %s</string>
+	<string name="notification_timetable_changes_title">Multiple changes were made to your timetable!</string>
+	<string name="notification_timetable_changes_text">%d events were added, %d were cancelled.</string>
+	<string name="notification_daily_title">Time to prepare for your day at uni!</string>
+	<string name="notification_daily_text">Your first event today starts at %s @ %s - %s. You have %d events today.</string>
+	<string name="notification_daily_day_before_text">Your first event tomorrow starts at %s @ %s - %s. You have %d events tomorrow.</string>
 </resources>

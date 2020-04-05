@@ -3,7 +3,7 @@ package com.patlejch.timetables.data.database
 import androidx.room.Dao
 import androidx.room.Query
 import com.patlejch.timetables.model.entity.inbound.Event
-import com.patlejch.timetables.util.dbFormat
+import com.patlejch.timetables.util.dbFormatDay
 import com.skoumal.teanity.database.BaseDao
 import java.util.*
 
@@ -12,7 +12,7 @@ interface EventDao : BaseDao<Event> {
 
     companion object {
         suspend fun EventDao.fetchByDate(date: Date): List<Event> =
-            fetchByDateString(date.dbFormat())
+            fetchByDateString(date.dbFormatDay())
     }
 
     @Query("select * from event where deleted = 0")

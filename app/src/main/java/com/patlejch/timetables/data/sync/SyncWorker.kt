@@ -3,9 +3,7 @@ package com.patlejch.timetables.data.sync
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.patlejch.timetables.data.repository.EventRepository
-import com.patlejch.timetables.model.event.DataEvent
-import com.skoumal.teanity.rxbus.RxBus
+import com.patlejch.timetables.data.usecase.SyncUseCase
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
@@ -18,18 +16,13 @@ class SyncWorker(context: Context, parameters: WorkerParameters) :
         const val NAME_ONE_TIME = "SyncWorker_onetime"
     }
 
-    private val eventRepository: EventRepository by inject()
-
-    private val rxBus: RxBus by inject()
+    private val syncUseCase: SyncUseCase by inject()
 
     override suspend fun doWork(): Result {
         runCatching {
-            val changes = eventRepository.fetchChanges()
-            // todo notify of changes
+            syncUseCase()
         }
 
-        rxBus.post(DataEvent.EventsUpdated)
         return Result.success()
     }
-
 }

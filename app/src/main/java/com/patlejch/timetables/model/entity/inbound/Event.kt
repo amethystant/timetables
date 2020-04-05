@@ -1,8 +1,11 @@
 package com.patlejch.timetables.model.entity.inbound
 
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import com.patlejch.timetables.util.calendarBritish
 import com.squareup.moshi.JsonClass
+import java.util.*
 
 @Entity(tableName = "event")
 @JsonClass(generateAdapter = true)
@@ -14,8 +17,12 @@ data class Event(
     val location: String,
     val deleted: Boolean
 ) {
-
-    val startHour: Int get() = start.substringAfter("T").substring(0, 2).toInt() + 1
-    val endHour: Int get() = end.substringAfter("T").substring(0, 2).toInt() + 1
-
+    @delegate:Ignore
+    val startDateBritish: Calendar by lazy { start.calendarBritish() }
+    @delegate:Ignore
+    val endDateBritish: Calendar by lazy { end.calendarBritish() }
+    @delegate:Ignore
+    val startHour: Int by lazy { startDateBritish.get(Calendar.HOUR_OF_DAY) }
+    @delegate:Ignore
+    val endHour: Int by lazy { endDateBritish.get(Calendar.HOUR_OF_DAY) }
 }
