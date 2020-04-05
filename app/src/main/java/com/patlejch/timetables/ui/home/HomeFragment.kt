@@ -6,7 +6,7 @@ import android.view.View
 import androidx.viewpager2.widget.ViewPager2
 import com.patlejch.timetables.R
 import com.patlejch.timetables.databinding.FragmentHomeBinding
-import com.patlejch.timetables.model.base.TimetablesFragment
+import com.patlejch.timetables.model.base.AppFragment
 import com.patlejch.timetables.model.event.ViewEvents
 import com.skoumal.teanity.util.Insets
 import com.skoumal.teanity.viewevents.SnackbarEvent
@@ -14,7 +14,7 @@ import com.skoumal.teanity.viewevents.ViewEvent
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.util.*
 
-class HomeFragment : TimetablesFragment<HomeViewModel, FragmentHomeBinding>() {
+class HomeFragment : AppFragment<HomeViewModel, FragmentHomeBinding>() {
 
     override val layoutRes = R.layout.fragment_home
     override val viewModel: HomeViewModel by sharedViewModel()

@@ -3,7 +3,7 @@ package com.patlejch.timetables.ui.home
 import android.view.MenuItem
 import com.patlejch.timetables.R
 import com.patlejch.timetables.data.usecase.SyncUseCase
-import com.patlejch.timetables.model.base.TimetablesViewModel
+import com.patlejch.timetables.model.base.AppViewModel
 import com.patlejch.timetables.model.entity.ui.TableParams
 import com.patlejch.timetables.model.event.ViewEvents
 import com.patlejch.timetables.util.minus
@@ -16,7 +16,7 @@ import java.util.*
 class HomeViewModel(
     val params: TableParams,
     private val syncUseCase: SyncUseCase
-) : TimetablesViewModel() {
+) : AppViewModel() {
 
     companion object {
         val dateFormat = SimpleDateFormat("EEE d MMMM yyyy", Locale.UK)

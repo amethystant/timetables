@@ -2,14 +2,14 @@ package com.patlejch.timetables.ui.setup.welcome
 
 import com.patlejch.timetables.R
 import com.patlejch.timetables.data.usecase.UpdateCalendarUrlUseCase
-import com.patlejch.timetables.model.base.TimetablesViewModel
+import com.patlejch.timetables.model.base.AppViewModel
 import com.patlejch.timetables.model.navigation.Navigation
 import com.patlejch.timetables.util.verifyUrl
 import com.skoumal.teanity.util.KObservableField
 
 class SetupWelcomeViewModel(
     private val updateCalendarUrlUseCase: UpdateCalendarUrlUseCase
-) : TimetablesViewModel() {
+) : AppViewModel() {
 
     val instructionsVisible = KObservableField(false)
     val url = KObservableField("")

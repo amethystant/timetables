@@ -4,7 +4,7 @@ import android.util.SparseArray
 import com.patlejch.timetables.BR
 import com.patlejch.timetables.data.repository.FilterRepository
 import com.patlejch.timetables.data.usecase.GetEventsFilteredUseCase
-import com.patlejch.timetables.model.base.TimetablesViewModel
+import com.patlejch.timetables.model.base.AppViewModel
 import com.patlejch.timetables.model.entity.inbound.Event
 import com.patlejch.timetables.model.entity.internal.Filter
 import com.patlejch.timetables.model.entity.recycler.EventItem
@@ -28,7 +28,7 @@ class TimetableViewModel(
     private val getEventsFilteredUseCase: GetEventsFilteredUseCase,
     private val filterRepository: FilterRepository,
     rxBus: RxBus
-) : TimetablesViewModel() {
+) : AppViewModel() {
 
     val items = diffListOf<GenericRvItem>()
     val binding = bindingOf<GenericRvItem> {

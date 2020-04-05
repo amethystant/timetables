@@ -7,13 +7,13 @@ import android.text.format.DateFormat
 import android.view.View
 import com.patlejch.timetables.R
 import com.patlejch.timetables.databinding.FragmentSettingsBinding
-import com.patlejch.timetables.model.base.TimetablesFragment
+import com.patlejch.timetables.model.base.AppFragment
 import com.patlejch.timetables.model.event.ViewEvents
 import com.skoumal.teanity.util.Insets
 import com.skoumal.teanity.viewevents.ViewEvent
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-class SettingsFragment : TimetablesFragment<SettingsViewModel, FragmentSettingsBinding>() {
+class SettingsFragment : AppFragment<SettingsViewModel, FragmentSettingsBinding>() {
 
     override val layoutRes = R.layout.fragment_settings
 

@@ -1,5 +1,5 @@
 package com.patlejch.timetables.ui
 
-import com.patlejch.timetables.model.base.TimetablesViewModel
+import com.patlejch.timetables.model.base.AppViewModel
 
-class MainViewModel : TimetablesViewModel()
+class MainViewModel : AppViewModel()

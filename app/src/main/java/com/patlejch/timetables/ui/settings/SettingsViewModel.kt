@@ -4,7 +4,7 @@ import com.patlejch.timetables.Config
 import com.patlejch.timetables.R
 import com.patlejch.timetables.data.repository.FilterRepository
 import com.patlejch.timetables.data.usecase.UpdateCalendarUrlUseCase
-import com.patlejch.timetables.model.base.TimetablesViewModel
+import com.patlejch.timetables.model.base.AppViewModel
 import com.patlejch.timetables.model.entity.internal.Filter
 import com.patlejch.timetables.model.event.DataEvent
 import com.patlejch.timetables.model.event.ViewEvents
@@ -24,7 +24,7 @@ class SettingsViewModel(
     private val filterRepository: FilterRepository,
     private val updateCalendarUrlUseCase: UpdateCalendarUrlUseCase,
     rxBus: RxBus
-) : TimetablesViewModel() {
+) : AppViewModel() {
 
     val urlChanged = KObservableField(false)
 
