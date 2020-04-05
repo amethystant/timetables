@@ -26,6 +26,7 @@ class HomeFragment : AppFragment<HomeViewModel, FragmentHomeBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         viewPager = binding.homeViewPager
+        viewPager.offscreenPageLimit = 2
         adapter = adapter ?: DailyTimetablesAdapter(viewModel.date.value, this).also {
             viewPager.adapter = it
             viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
