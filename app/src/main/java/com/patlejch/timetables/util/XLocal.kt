@@ -60,3 +60,5 @@ fun Calendar.notificationFormat(resources: Resources): String {
 
     return "$day, $time"
 }
+
+fun Calendar.formatTimeOnly() = notificationFormatTime.format(this)

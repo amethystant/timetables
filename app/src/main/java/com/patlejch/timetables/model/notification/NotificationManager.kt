@@ -10,18 +10,52 @@ import android.content.Intent
 import android.media.RingtoneManager
 import android.os.Build
 import androidx.core.app.NotificationCompat
+import androidx.work.*
+import com.patlejch.timetables.Config
 import com.patlejch.timetables.R
 import com.patlejch.timetables.model.entity.inbound.Event
 import com.patlejch.timetables.ui.MainActivity
+import com.patlejch.timetables.util.formatTimeOnly
 import com.patlejch.timetables.util.notificationFormat
+import com.patlejch.timetables.util.timeZoneBritish
+import com.patlejch.timetables.work.DailyNotificationWorker
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 class NotificationManager(
-    private val context: Context
+    private val context: Context,
+    private val config: Config
 ) {
 
     companion object {
         private const val CHANNEL_ID_TIMETABLE_CHANGES = "CHANNEL_ID_TIMETABLE_CHANGES"
         private const val CHANNEL_ID_DAILY_NOTIFICATIONS = "CHANNEL_ID_DAILY_NOTIFICATIONS"
+    }
+
+    fun scheduleDailyNotifications() {
+        val timeNow = Date()
+        val notificationTime = config.notificationTime.let {
+            Calendar.getInstance(timeZoneBritish).run {
+                set(Calendar.HOUR_OF_DAY, it.hour)
+                set(Calendar.MINUTE, it.minute)
+                if (time < timeNow) {
+                    add(Calendar.DAY_OF_YEAR, 1)
+                }
+                time
+            }
+        }
+
+        val delay = notificationTime.time - timeNow.time
+
+        val workRequest = PeriodicWorkRequestBuilder<DailyNotificationWorker>(24, TimeUnit.HOURS)
+            .setInitialDelay(delay, TimeUnit.MILLISECONDS)
+            .build()
+
+        WorkManager.getInstance(context).enqueueUniquePeriodicWork(
+            DailyNotificationWorker.NAME,
+            ExistingPeriodicWorkPolicy.REPLACE,
+            workRequest
+        )
     }
 
     fun displayTimetableChangeNotification(event: Event) {
@@ -67,7 +101,25 @@ class NotificationManager(
     }
 
     fun displayDailyNotification(earliestEvent: Event, eventsCount: Int, isDayBefore: Boolean) {
-        // todo display
+        context.apply {
+            val title = getString(R.string.notification_daily_title)
+            val text = getString(
+                if (isDayBefore)
+                    R.string.notification_daily_day_before_text
+                else
+                    R.string.notification_daily_text,
+                earliestEvent.location,
+                earliestEvent.startDateBritish.formatTimeOnly(),
+                earliestEvent.summary,
+                eventsCount
+            )
+            displayMainActivityNotification(
+                title,
+                text,
+                createDailyNotificationsChannel(),
+                0
+            )
+        }
     }
 
     private fun displayMainActivityNotification(

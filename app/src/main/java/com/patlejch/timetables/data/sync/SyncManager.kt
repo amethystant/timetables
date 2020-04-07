@@ -2,6 +2,7 @@ package com.patlejch.timetables.data.sync
 
 import android.content.Context
 import androidx.work.*
+import com.patlejch.timetables.work.SyncWorker
 import java.util.concurrent.TimeUnit
 
 class SyncManager(private val context: Context) {

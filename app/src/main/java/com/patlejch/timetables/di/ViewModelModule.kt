@@ -12,7 +12,7 @@ import org.koin.dsl.module
 import java.util.*
 
 val viewModelModule = module {
-    viewModel { MainViewModel() }
+    viewModel { MainViewModel(get(), get()) }
     viewModel { HomeViewModel(get(), get()) }
     viewModel { SettingsViewModel(get(), get(), get(), get()) }
     viewModel { (date: Date) -> TimetableViewModel(date, get(), get(), get(), get()) }
