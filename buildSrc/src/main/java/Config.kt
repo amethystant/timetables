@@ -9,8 +9,8 @@ object Config {
     }
 
     object Dependency {
-        const val kotlin = "1.3.41"
-        const val kotlinCoroutines = "1.2.2"
+        const val kotlin = "1.3.72"
+        const val kotlinCoroutines = "1.3.8"
         const val material = "1.1.0-rc02"
         const val room = "2.1.0"
         const val navigation = "2.1.0-alpha06"
