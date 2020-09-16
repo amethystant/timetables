@@ -77,7 +77,6 @@ android {
     buildTypes {
         getByName(Config.Build.Type.RELEASE) {
             isMinifyEnabled = true
-            isUseProguard = true
             isCrunchPngs = true
             isZipAlignEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
@@ -100,8 +99,8 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    dataBinding {
-        isEnabled = true
+    buildFeatures {
+        dataBinding = true
     }
 }
 

@@ -16,7 +16,7 @@ object Config {
         const val navigation = "2.1.0-alpha06"
         const val glide = "4.9.0"
         const val constraintLayout = "2.0.0-beta4"
-        const val gradlePlugin = "3.4.0"
+        const val gradlePlugin = "4.0.1"
         const val koin = "2.0.1"
         const val retrofit = "2.6.0"
         const val retrofitCoroutines = "0.9.2"
