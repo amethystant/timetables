@@ -12,6 +12,9 @@ fun BottomNavigationView.setupWith(navController: NavController) {
             null,
             NavOptions.Builder()
                 .setEnterAnim(android.R.anim.fade_in)
+                .apply {
+                    navController.currentDestination?.id?.let { setPopUpTo(it, true) }
+                }
                 .build()
         )
         true
