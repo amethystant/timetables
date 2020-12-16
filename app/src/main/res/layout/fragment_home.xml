@@ -15,36 +15,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/home_appbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="@{viewModel.insets.top}"
-            android:theme="@style/AppBarLayoutTheme"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/home_toolbar"
-                onMenuClick="@{(item) -> viewModel.onMenuItemClicked(item)}"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:menu="@menu/menu_home"
-                app:popupTheme="@style/ToolbarPopupTheme"
-                app:title="@{viewModel.dateFormatted}"
-                tools:title="16 October 2019" />
-
-        </com.google.android.material.appbar.AppBarLayout>
-
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:fillViewport="true"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/home_appbar">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="?colorSurface">
 
                 <!-- fixme delete this and add regular recyclerview -->
                 <com.patlejch.timetables.ui.home.HomeLeftColumnView

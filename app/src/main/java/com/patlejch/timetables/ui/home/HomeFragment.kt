@@ -57,9 +57,6 @@ class HomeFragment : AppFragment<HomeViewModel, FragmentHomeBinding>() {
         }
     }
 
-    override fun consumeSystemWindowInsets(left: Int, top: Int, right: Int, bottom: Int) =
-        Insets(top = top)
-
     private fun showDatePicker(event: ViewEvents.ShowDatePicker) {
         DatePickerDialog(requireContext(), event.listener, event.year, event.month, event.day)
             .show()

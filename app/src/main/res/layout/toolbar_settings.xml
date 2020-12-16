@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="insets"
+            type="com.skoumal.teanity.util.Insets" />
+
+        <variable
+            name="viewModel"
+            type="com.patlejch.timetables.ui.settings.SettingsViewModel" />
+
+    </data>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/settings_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@{insets.top}"
+        android:theme="@style/AppBarLayoutTheme"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/settings_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            app:popupTheme="@style/ToolbarPopupTheme"
+            app:title="@string/settings_title_long" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+</layout>

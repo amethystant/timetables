@@ -12,6 +12,14 @@
             name="viewModel"
             type="MainViewModel" />
 
+        <variable
+            name="homeViewModel"
+            type="com.patlejch.timetables.ui.home.HomeViewModel" />
+
+        <variable
+            name="settingsViewModel"
+            type="com.patlejch.timetables.ui.settings.SettingsViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,6 +30,25 @@
         android:paddingEnd="0dp"
         tools:context=".ui.MainActivity">
 
+        <ViewFlipper
+            android:id="@+id/main_toolbar_flipper"
+            page="@{viewModel.currentPage}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include
+                insets="@{viewModel.insets}"
+                layout="@layout/toolbar_home"
+                viewModel="@{homeViewModel}" />
+
+            <include
+                insets="@{viewModel.insets}"
+                layout="@layout/toolbar_settings"
+                viewModel="@{settingsViewModel}" />
+
+        </ViewFlipper>
+
         <fragment
             android:id="@+id/main_nav_host"
             android:name="androidx.navigation.fragment.NavHostFragment"
@@ -29,7 +56,7 @@
             android:layout_height="0dp"
             app:defaultNavHost="true"
             app:layout_constraintBottom_toTopOf="@id/bottom_nav_view"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/main_toolbar_flipper"
             app:navGraph="@navigation/navigation_main" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView

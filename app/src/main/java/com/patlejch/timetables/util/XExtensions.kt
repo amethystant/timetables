@@ -5,7 +5,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-fun BottomNavigationView.setupWith(navController: NavController) {
+fun BottomNavigationView.setupWith(navController: NavController, onNavigation: (Int) -> Unit) {
     setOnNavigationItemSelectedListener {
         navController.navigate(
             it.itemId,
@@ -17,6 +17,7 @@ fun BottomNavigationView.setupWith(navController: NavController) {
                 }
                 .build()
         )
+        onNavigation(it.itemId)
         true
     }
 

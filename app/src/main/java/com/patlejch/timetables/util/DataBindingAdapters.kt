@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.EditText
 import androidx.databinding.BindingAdapter
 import android.widget.ImageView
+import android.widget.ViewFlipper
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.Group
@@ -174,4 +175,9 @@ fun ChipGroup.setUp(items: List<String>, onChipClosedListener: OnChipClosedListe
             }
         }
     }
+}
+
+@BindingAdapter("page")
+fun ViewFlipper.setPage(page: Int) {
+    displayedChild = page
 }

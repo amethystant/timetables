@@ -6,8 +6,10 @@ import com.patlejch.timetables.R
 import com.patlejch.timetables.databinding.ActivityMainBinding
 import com.patlejch.timetables.model.base.TimetablesActivity
 import com.patlejch.timetables.model.navigation.Navigation
+import com.patlejch.timetables.ui.home.HomeViewModel
+import com.patlejch.timetables.ui.settings.SettingsViewModel
 import com.patlejch.timetables.util.setupWith
-import com.skoumal.teanity.view.TeanityActivity
+import com.skoumal.teanity.util.Insets
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -19,6 +21,9 @@ class MainActivity : TimetablesActivity<MainViewModel, ActivityMainBinding>() {
 
     private val config: Config by inject()
 
+    private val homeViewModel: HomeViewModel by viewModel()
+    private val settingsViewModel: SettingsViewModel by viewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -26,6 +31,14 @@ class MainActivity : TimetablesActivity<MainViewModel, ActivityMainBinding>() {
             onEventDispatched(Navigation.setup())
         }
 
-        binding.bottomNavView.setupWith(navController)
+        binding.homeViewModel = homeViewModel
+        binding.settingsViewModel = settingsViewModel
+        binding.bottomNavView.setupWith(navController) {
+            viewModel.currentPage.value = if (it == R.id.homeFragment) 0 else 1
+        }
     }
+
+    override fun consumeSystemWindowInsets(left: Int, top: Int, right: Int, bottom: Int) =
+        Insets(top = top)
+
 }
