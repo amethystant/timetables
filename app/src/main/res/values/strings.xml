@@ -35,12 +35,13 @@
 	<string name="settings_url_hint">URL for calendar import page</string>
 	<string name="settings_url_invalid">Sorry, this doesn\'t seem to be a valid calendar URL.</string>
 	<string name="settings_filters_title">Filters</string>
-	<string name="settings_filters_hint">Type to add filters…</string>
+	<string name="settings_filters_explication">Here you can specify which events you don\'t want to see on your timetable. Simply type in the text that you want to ignore, such as \"Group Y\" - provided you\'re a member of Group X.</string>
+	<string name="settings_filters_hint">Type the module you never want to attend</string>
 	<string name="settings_filters_none">No filters set.</string>
 	<string name="settings_notifications_title">Notifications</string>
 	<string name="settings_notifications_daily_time">Daily notifications time</string>
 	<string name="settings_notifications_daily_in_advance">Daily notifications on the day before</string>
-	<string name="settings_notifications_daily_explication">Notifications can be turned off in system settings.</string>
+	<string name="settings_notifications_daily_explication">The time of notification delivery might be inexact on certain brands of phones.\nNotifications can be turned off in system settings.</string>
 
 	<!-- Notifications -->
 	<string name="channel_name_timetable_changes">Timetable changes</string>

@@ -168,6 +168,31 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/settings_no_filters" />
 
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/settings_filters_info_icon"
+                    android:layout_width="@dimen/margin_generic"
+                    android:layout_height="@dimen/margin_generic"
+                    app:layout_constraintBottom_toBottomOf="@id/settings_filters_info_text"
+                    app:layout_constraintStart_toStartOf="@id/settings_filters_title"
+                    app:layout_constraintTop_toTopOf="@id/settings_filters_info_text"
+                    app:srcCompat="@drawable/ic_info"
+                    app:tint="@color/colorOnSurfaceVariant" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/settings_filters_info_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_generic"
+                    android:layout_marginTop="@dimen/margin_generic"
+                    android:layout_marginEnd="@dimen/margin_generic"
+                    android:text="@string/settings_filters_explication"
+                    android:textAppearance="@style/TextAppearance.Caption"
+                    android:textColor="@color/colorOnSurfaceVariant"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/settings_filters_info_icon"
+                    app:layout_constraintTop_toTopOf="@id/settings_filters_chips" />
+
                 <!-- section notifications -->
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -175,7 +200,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_generic_double"
-                    android:layout_marginTop="@dimen/margin_generic"
+                    android:layout_marginTop="@dimen/margin_generic_double"
                     android:layout_marginEnd="@dimen/margin_generic_double"
                     android:ellipsize="end"
                     android:maxLines="1"
@@ -185,7 +210,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/settings_filters_chips" />
+                    app:layout_constraintTop_toBottomOf="@id/settings_filters_info_text" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_notifications_daily_time"
@@ -233,25 +258,26 @@
                     android:id="@+id/settings_notifications_daily_info_icon"
                     android:layout_width="@dimen/margin_generic"
                     android:layout_height="@dimen/margin_generic"
-                    android:layout_marginTop="@dimen/margin_generic"
+                    app:layout_constraintBottom_toBottomOf="@id/settings_notifications_daily_info_text"
                     app:layout_constraintStart_toStartOf="@id/settings_notifications_daily_in_advance"
-                    app:layout_constraintTop_toBottomOf="@id/settings_notifications_daily_in_advance"
+                    app:layout_constraintTop_toTopOf="@+id/settings_notifications_daily_info_text"
                     app:srcCompat="@drawable/ic_info"
                     app:tint="@color/colorOnSurfaceVariant" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/settings_notifications_daily_info_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_generic"
+                    android:layout_marginEnd="@dimen/margin_generic"
                     android:text="@string/settings_notifications_daily_explication"
                     android:textAppearance="@style/TextAppearance.Caption"
                     android:textColor="@color/colorOnSurfaceVariant"
                     app:layout_constrainedWidth="true"
-                    app:layout_constraintBottom_toBottomOf="@id/settings_notifications_daily_info_icon"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toEndOf="@id/settings_notifications_daily_info_icon"
-                    app:layout_constraintTop_toTopOf="@id/settings_notifications_daily_info_icon" />
+                    app:layout_constraintTop_toBottomOf="@id/settings_notifications_daily_in_advance" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
