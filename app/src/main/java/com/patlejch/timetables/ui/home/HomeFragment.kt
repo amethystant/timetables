@@ -8,7 +8,6 @@ import com.patlejch.timetables.R
 import com.patlejch.timetables.databinding.FragmentHomeBinding
 import com.patlejch.timetables.model.base.AppFragment
 import com.patlejch.timetables.model.event.ViewEvents
-import com.skoumal.teanity.util.Insets
 import com.skoumal.teanity.viewevents.SnackbarEvent
 import com.skoumal.teanity.viewevents.ViewEvent
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -58,8 +57,13 @@ class HomeFragment : AppFragment<HomeViewModel, FragmentHomeBinding>() {
     }
 
     private fun showDatePicker(event: ViewEvents.ShowDatePicker) {
-        DatePickerDialog(requireContext(), event.listener, event.year, event.month, event.day)
-            .show()
+        DatePickerDialog(
+            requireContext(),
+            event.listener,
+            event.year,
+            event.month,
+            event.day
+        ).show()
     }
 
     private fun onDateSkipped() {

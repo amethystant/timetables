@@ -3,8 +3,8 @@
     <color name="colorPrimary">#90caf9</color>
     <color name="colorPrimaryDark">#5d99c6</color>
     <color name="colorPrimaryVariant">#c3fdff</color>
-    <color name="colorSecondary">#fdd835</color>
-    <color name="colorSecondaryDark">#c6a700</color>
+    <color name="colorSecondary">@color/colorPrimary</color>
+    <color name="colorSecondaryDark">@color/colorPrimaryDark</color>
 
     <color name="dividerGray">#1F000000</color>
 
