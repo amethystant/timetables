@@ -28,6 +28,8 @@ fun Date.dbFormatDay() = dbFormatDay.format(this)
 
 fun String.dateUtc() = dbFormatWhole.parse(this)
 
+val timeZoneBritish: TimeZone = TimeZone.getTimeZone("Europe/London")
+
 fun String.calendarBritish() = Calendar.getInstance().apply {
     time = dateUtc() ?: throw IllegalArgumentException("Unable to parse date.")
     timeZone = timeZoneBritish
@@ -40,8 +42,6 @@ private val notificationFormatDay = SimpleDateFormat("d/M", Locale.UK).apply {
 private val notificationFormatTime = SimpleDateFormat("HH:mm", Locale.UK).apply {
     timeZone = timeZoneBritish
 }
-
-val timeZoneBritish = TimeZone.getTimeZone("Europe/London")
 
 infix fun Calendar.sameDayAs(other: Calendar) =
     get(Calendar.DAY_OF_MONTH) == other.get(Calendar.DAY_OF_MONTH)
@@ -61,4 +61,4 @@ fun Calendar.notificationFormat(resources: Resources): String {
     return "$day, $time"
 }
 
-fun Calendar.formatTimeOnly() = notificationFormatTime.format(this)
+fun Calendar.formatTimeOnly() = notificationFormatTime.format(this.time.time)

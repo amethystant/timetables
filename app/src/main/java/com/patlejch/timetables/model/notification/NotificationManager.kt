@@ -135,6 +135,7 @@ class NotificationManager(
             .setContentText(text)
             .setAutoCancel(true)
             .setSound(soundUri)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(text))
             .setContentIntent(createMainActivityPendingIntent())
             .setPriority(NotificationCompat.PRIORITY_MAX)
 

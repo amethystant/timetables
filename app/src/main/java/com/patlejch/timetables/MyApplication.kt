@@ -26,8 +26,6 @@ class MyApplication : MultiDexApplication() {
             modules(koinModules)
         }
 
-        // todo plan notification
-        
         syncManager.syncNow()
         syncManager.schedulePeriodicSync()
 
