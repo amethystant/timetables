@@ -122,7 +122,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_generic_double"
-                    android:visibility="gone"
                     android:layout_marginTop="@dimen/margin_generic"
                     android:layout_marginEnd="@dimen/margin_generic_double"
                     android:hint="@string/settings_filters_hint"
