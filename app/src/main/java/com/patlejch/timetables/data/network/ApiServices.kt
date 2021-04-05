@@ -13,4 +13,10 @@ interface ApiServices {
         @Query("version") currentVersion: Long
     ): Deferred<Response<EventsResponse>>
 
+    @GET("v1/mock/events")
+    fun getMockEvents(
+        @Query("url") url: String,
+        @Query("version") currentVersion: Long
+    ): Deferred<Response<EventsResponse>>
+
 }

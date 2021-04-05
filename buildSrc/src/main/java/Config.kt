@@ -36,8 +36,7 @@ object Config {
         object Type {
             const val RELEASE = "release"
             const val DEBUG = "debug"
-            const val ALPHA = "alpha"
-            const val BETA = "beta"
+            const val MOCK = "mock"
         }
     }
 

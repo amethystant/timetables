@@ -15,6 +15,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import java.io.InputStream
 
+// fixme why the hell is this even here
 @Suppress("ConstantConditionIf")
 @GlideModule
 class MyAppGlideModule : AppGlideModule() {
@@ -22,8 +23,8 @@ class MyAppGlideModule : AppGlideModule() {
     override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
         val interceptor = HttpLoggingInterceptor()
 
-        if (Constants.DEBUG || Constants.ALPHA) {
-            interceptor.level = HttpLoggingInterceptor.Level.NONE
+        if (Constants.IS_TEST_BUILD) {
+            interceptor.level = HttpLoggingInterceptor.Level.BASIC
         } else {
             interceptor.level = HttpLoggingInterceptor.Level.NONE
         }
@@ -38,7 +39,7 @@ class MyAppGlideModule : AppGlideModule() {
     }
 
     override fun applyOptions(context: Context, builder: GlideBuilder) {
-        if (Constants.DEBUG || Constants.ALPHA) {
+        if (Constants.IS_TEST_BUILD) {
             builder.setLogLevel(Log.VERBOSE)
         }
 

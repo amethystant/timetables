@@ -4,6 +4,7 @@ import com.patlejch.timetables.Config
 import com.patlejch.timetables.data.database.EventDao
 import com.patlejch.timetables.data.database.EventDao.Companion.fetchByDate
 import com.patlejch.timetables.data.network.ApiServices
+import com.patlejch.timetables.data.usecase.FetchEventsUseCase
 import com.patlejch.timetables.model.entity.inbound.EventsResponse
 import com.patlejch.timetables.model.event.DataEvent
 import com.skoumal.teanity.rxbus.RxBus
@@ -14,7 +15,7 @@ import java.util.*
 class EventRepository(
     private val eventDao: EventDao,
     private val config: Config,
-    private val apiServices: ApiServices,
+    private val fetchEventsUseCase: FetchEventsUseCase,
     private val rxBus: RxBus
 ) {
 
@@ -28,14 +29,14 @@ class EventRepository(
     }
 
     suspend fun fetchRemote() = withContext(Dispatchers.IO) {
-        apiServices.getEvents(config.calendarUrl, config.version).await().body()!!.run {
+        fetchEventsUseCase().run {
             save()
             eventDao.fetchAll()
         }
     }
 
     suspend fun fetchChanges() = withContext(Dispatchers.IO) {
-        apiServices.getEvents(config.calendarUrl, config.version).await().body()!!.run {
+        fetchEventsUseCase().run {
             save()
             objects
         }

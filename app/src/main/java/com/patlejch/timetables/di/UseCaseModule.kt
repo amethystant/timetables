@@ -1,14 +1,13 @@
 package com.patlejch.timetables.di
 
-import com.patlejch.timetables.data.usecase.GetEventsFilteredUseCase
-import com.patlejch.timetables.data.usecase.DisplayChangesNotificationUseCase
-import com.patlejch.timetables.data.usecase.SyncUseCase
-import com.patlejch.timetables.data.usecase.UpdateCalendarUrlUseCase
+import com.patlejch.timetables.data.usecase.*
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val useCaseModule = module {
-    single { UpdateCalendarUrlUseCase(get(), get()) }
-    single { GetEventsFilteredUseCase(get(), get()) }
-    single { SyncUseCase(get(), get()) }
-    single { DisplayChangesNotificationUseCase(get()) }
+    factory { UpdateCalendarUrlUseCase(get(), get()) }
+    factory { GetEventsFilteredUseCase(get(), get()) }
+    factory { SyncUseCase(get(), get()) }
+    factory { DisplayChangesNotificationUseCase(get()) }
+    factory { FetchEventsUseCase(get(), get(named(DI_DO_MOCK)), get()) }
 }

@@ -29,11 +29,11 @@ class MyApplication : MultiDexApplication() {
         syncManager.syncNow()
         syncManager.schedulePeriodicSync()
 
-        if (Constants.DEBUG) {
+        if (Constants.IS_TEST_BUILD) {
             Stetho.initializeWithDefaults(this)
         }
 
-        if (Constants.DEBUG) {
+        if (Constants.IS_TEST_BUILD) {
             Timber.plant(debugTree)
         } else {
             Timber.plant(crashReportingTree)

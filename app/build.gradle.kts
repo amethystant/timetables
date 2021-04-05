@@ -64,14 +64,6 @@ android {
             keyAlias = "debugkey"
             keyPassword = "debugkey"
         }
-        createChild(Config.Sign.ALPHA) {
-            keyAlias = ""
-            keyPassword = ""
-        }
-        createChild(Config.Sign.BETA) {
-            keyAlias = ""
-            keyPassword = ""
-        }
     }
 
     buildTypes {
@@ -84,13 +76,11 @@ android {
         getByName(Config.Build.Type.DEBUG) {
             signingConfig = signingConfigs.findByName(Config.Sign.DEBUG)
         }
-        create(Config.Build.Type.ALPHA) {
+        create(Config.Build.Type.MOCK) {
             matchingFallbacks = listOf(Config.Build.Type.DEBUG)
-            applicationIdSuffix = ".${Config.Build.Type.ALPHA}"
-        }
-        create(Config.Build.Type.BETA) {
-            matchingFallbacks = listOf(Config.Build.Type.RELEASE)
-            applicationIdSuffix = ".${Config.Build.Type.BETA}"
+            applicationIdSuffix = ".${Config.Build.Type.MOCK}"
+            isDebuggable = true
+            signingConfig = signingConfigs.findByName(Config.Sign.DEBUG)
         }
     }
 
