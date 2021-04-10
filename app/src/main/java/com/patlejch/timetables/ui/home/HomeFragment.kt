@@ -37,11 +37,6 @@ class HomeFragment : AppFragment<HomeViewModel, FragmentHomeBinding>() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.refreshRemote()
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         adapter = null
