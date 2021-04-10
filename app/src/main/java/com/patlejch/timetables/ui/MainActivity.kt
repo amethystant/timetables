@@ -3,6 +3,7 @@ package com.patlejch.timetables.ui
 import android.os.Bundle
 import com.patlejch.timetables.Config
 import com.patlejch.timetables.R
+import com.patlejch.timetables.data.sync.SyncManager
 import com.patlejch.timetables.databinding.ActivityMainBinding
 import com.patlejch.timetables.model.base.TimetablesActivity
 import com.patlejch.timetables.model.navigation.Navigation
@@ -23,6 +24,7 @@ class MainActivity : TimetablesActivity<MainViewModel, ActivityMainBinding>() {
 
     private val homeViewModel: HomeViewModel by viewModel()
     private val settingsViewModel: SettingsViewModel by viewModel()
+    private val syncManager: SyncManager by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,11 +33,19 @@ class MainActivity : TimetablesActivity<MainViewModel, ActivityMainBinding>() {
             onEventDispatched(Navigation.setup())
         }
 
+        syncManager.schedulePeriodicSync()
+        viewModel.scheduleNotifications()
+
         binding.homeViewModel = homeViewModel
         binding.settingsViewModel = settingsViewModel
         binding.bottomNavView.setupWith(navController) {
             viewModel.currentPage.value = if (it == R.id.homeFragment) 0 else 1
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.sync()
     }
 
     override fun consumeSystemWindowInsets(left: Int, top: Int, right: Int, bottom: Int) =

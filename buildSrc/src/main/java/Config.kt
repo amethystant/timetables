@@ -26,6 +26,7 @@ object Config {
         const val timber = "4.7.1"
         const val teanity = "0.+"
         const val viewPager2 = "1.0.0-rc01"
+        const val work = "2.5.0"
     }
 
     object Build {

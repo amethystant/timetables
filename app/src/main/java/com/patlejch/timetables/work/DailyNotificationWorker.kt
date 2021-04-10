@@ -5,6 +5,7 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.patlejch.timetables.Config
 import com.patlejch.timetables.data.usecase.GetEventsFilteredUseCase
+import com.patlejch.timetables.data.usecase.SyncUseCase
 import com.patlejch.timetables.model.notification.NotificationManager
 import com.patlejch.timetables.util.timeZoneBritish
 import org.koin.core.KoinComponent
@@ -22,8 +23,10 @@ class DailyNotificationWorker(context: Context, parameters: WorkerParameters) :
     private val config: Config by inject()
     private val notificationManager: NotificationManager by inject()
     private val getEventsFilteredUseCase: GetEventsFilteredUseCase by inject()
+    private val syncUseCase: SyncUseCase by inject()
 
     override suspend fun doWork(): Result {
+        runCatching { syncUseCase() }
         runCatching {
             val date = Calendar.getInstance(timeZoneBritish).run {
                 if (config.notificationDayBefore)

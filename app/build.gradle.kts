@@ -116,6 +116,7 @@ dependencies {
     // SUPPORT LIBS
     implementation("com.google.android.material", "material", Config.Dependency.material)
     implementation("androidx.constraintlayout", "constraintlayout", Config.Dependency.constraintLayout)
+    implementation("androidx.work", "work-runtime-ktx", Config.Dependency.work)
 
     // DEPENDENCY INJECTION
     implementation("org.koin", "koin-core", Config.Dependency.koin)

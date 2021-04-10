@@ -30,6 +30,9 @@ class NotificationManager(
     companion object {
         private const val CHANNEL_ID_TIMETABLE_CHANGES = "CHANNEL_ID_TIMETABLE_CHANGES"
         private const val CHANNEL_ID_DAILY_NOTIFICATIONS = "CHANNEL_ID_DAILY_NOTIFICATIONS"
+
+        private const val NOTIFICATION_ID_DAILY = 1
+        private const val NOTIFICATION_ID_MAX_RESERVED = 1
     }
 
     fun scheduleDailyNotifications() {
@@ -47,7 +50,7 @@ class NotificationManager(
 
         val delay = notificationTime.time - timeNow.time
 
-        val workRequest = PeriodicWorkRequestBuilder<DailyNotificationWorker>(24, TimeUnit.HOURS)
+        val workRequest = PeriodicWorkRequestBuilder<DailyNotificationWorker>(1, TimeUnit.DAYS)
             .setInitialDelay(delay, TimeUnit.MILLISECONDS)
             .build()
 
@@ -95,7 +98,7 @@ class NotificationManager(
                 title,
                 text,
                 createTimetableChangesChannel(),
-                0 - addedCount - removedCount
+                uniqueNotificationId()
             )
         }
     }
@@ -117,10 +120,13 @@ class NotificationManager(
                 title,
                 text,
                 createDailyNotificationsChannel(),
-                0
+                NOTIFICATION_ID_DAILY
             )
         }
     }
+
+    private fun uniqueNotificationId() =
+        (Date().time % Int.MAX_VALUE).toInt() + NOTIFICATION_ID_MAX_RESERVED + 1
 
     private fun displayMainActivityNotification(
         title: String,

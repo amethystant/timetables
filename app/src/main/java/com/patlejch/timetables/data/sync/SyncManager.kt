@@ -24,14 +24,14 @@ class SyncManager(private val context: Context) {
     }
 
     fun schedulePeriodicSync() {
-        val workRequest = PeriodicWorkRequestBuilder<SyncWorker>(1, TimeUnit.HOURS)
+        val workRequest = PeriodicWorkRequestBuilder<SyncWorker>(20, TimeUnit.MINUTES)
             .setConstraints(
                 Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
             ).build()
 
         WorkManager.getInstance(context).enqueueUniquePeriodicWork(
             SyncWorker.NAME,
-            ExistingPeriodicWorkPolicy.KEEP,
+            ExistingPeriodicWorkPolicy.REPLACE,
             workRequest
         )
     }

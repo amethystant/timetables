@@ -4,17 +4,13 @@ import android.util.Log
 import androidx.multidex.MultiDexApplication
 import com.chibatching.kotpref.Kotpref
 import com.facebook.stetho.Stetho
-import com.patlejch.timetables.data.sync.SyncManager
 import com.patlejch.timetables.di.koinModules
-import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
 
 @Suppress("ConstantConditionIf")
 class MyApplication : MultiDexApplication() {
-
-    private val syncManager: SyncManager by inject()
 
     override fun onCreate() {
         super.onCreate()
@@ -25,9 +21,6 @@ class MyApplication : MultiDexApplication() {
             androidContext(this@MyApplication)
             modules(koinModules)
         }
-
-        syncManager.syncNow()
-        syncManager.schedulePeriodicSync()
 
         if (Constants.IS_TEST_BUILD) {
             Stetho.initializeWithDefaults(this)
