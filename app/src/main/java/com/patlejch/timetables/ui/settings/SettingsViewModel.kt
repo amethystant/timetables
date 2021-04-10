@@ -150,6 +150,12 @@ class SettingsViewModel(
         notificationMinute.value = minute
     }
 
+    // section oss libraries
+
+    fun ossLicensesClicked() {
+        ViewEvents.OpenOssLicenses.publish()
+    }
+
     private object StringDiffCallback : BaseDiffObservableList.Callback<String> {
         override fun areContentsTheSame(oldItem: String, newItem: String) = true
         override fun areItemsTheSame(oldItem: String, newItem: String) = oldItem == newItem

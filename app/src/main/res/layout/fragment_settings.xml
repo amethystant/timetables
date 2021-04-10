@@ -19,6 +19,7 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:fillViewport="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -184,7 +185,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_generic"
                     android:layout_marginTop="@dimen/margin_generic"
-                    android:layout_marginEnd="@dimen/margin_generic"
+                    android:layout_marginEnd="@dimen/margin_generic_double"
                     android:text="@string/settings_filters_explication"
                     android:textAppearance="@style/TextAppearance.Caption"
                     android:textColor="@color/colorOnSurfaceVariant"
@@ -269,7 +270,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_generic"
-                    android:layout_marginEnd="@dimen/margin_generic"
+                    android:layout_marginEnd="@dimen/margin_generic_double"
                     android:text="@string/settings_notifications_daily_explication"
                     android:textAppearance="@style/TextAppearance.Caption"
                     android:textColor="@color/colorOnSurfaceVariant"
@@ -278,6 +279,21 @@
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toEndOf="@id/settings_notifications_daily_info_icon"
                     app:layout_constraintTop_toBottomOf="@id/settings_notifications_daily_in_advance" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/settings_oss_licences"
+                    style="@style/Widget.Button.Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_generic_triple"
+                    android:onClick="@{() -> viewModel.ossLicensesClicked()}"
+                    android:layout_marginEnd="@dimen/margin_generic_double"
+                    android:layout_marginBottom="@dimen/margin_generic_half"
+                    android:text="@string/settings_oss_licenses"
+                    app:layout_constraintVertical_bias="1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/settings_notifications_daily_info_text" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

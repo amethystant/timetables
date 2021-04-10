@@ -2,12 +2,11 @@ import com.android.build.gradle.internal.dsl.SigningConfig
 
 plugins {
     id("com.android.application")
-
     id("kotlin-android")
     id("kotlin-android-extensions")
     id("kotlin-kapt")
-
     id("androidx.navigation.safeargs.kotlin")
+    id("com.google.android.gms.oss-licenses-plugin")
 }
 
 repositories {
@@ -77,7 +76,7 @@ android {
             signingConfig = signingConfigs.findByName(Config.Sign.DEBUG)
         }
         create(Config.Build.Type.MOCK) {
-            matchingFallbacks = listOf(Config.Build.Type.DEBUG)
+            matchingFallbacks += listOf(Config.Build.Type.DEBUG)
             applicationIdSuffix = ".${Config.Build.Type.MOCK}"
             isDebuggable = true
             signingConfig = signingConfigs.findByName(Config.Sign.DEBUG)
@@ -137,6 +136,9 @@ dependencies {
     // EASING
     implementation("com.chibatching.kotpref", "kotpref", Config.Dependency.kotpref)
     implementation("com.jakewharton.timber", "timber", Config.Dependency.timber)
+
+    // OSS LICENCES
+    implementation("com.google.android.gms", "play-services-oss-licenses", Config.Dependency.ossLicenses)
 
     // KAPTs
     kapt("com.squareup.moshi", "moshi-kotlin-codegen", Config.Dependency.moshi)

@@ -25,6 +25,13 @@
 
         <activity android:name=".ui.setup.SetupActivity" />
 
+        <activity
+            android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
+            android:theme="@style/AppTheme.WithActionBar" />
+        <activity
+            android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
+            android:theme="@style/AppTheme.WithActionBar" />
+
     </application>
 
 </manifest>

@@ -42,6 +42,7 @@
 	<string name="settings_notifications_daily_time">Daily notifications time</string>
 	<string name="settings_notifications_daily_in_advance">Daily notifications on the day before</string>
 	<string name="settings_notifications_daily_explication">The time of notification delivery might be inexact on certain brands of phones.\nNotifications can be turned off in system settings.</string>
+	<string name="settings_oss_licenses">OSS Libraries</string>
 
 	<!-- Notifications -->
 	<string name="channel_name_timetable_changes">Timetable changes</string>

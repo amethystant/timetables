@@ -31,6 +31,8 @@ sealed class ViewEvents : ViewEvent() {
     ) : ViewEvents() {
         val listener = TimePickerDialog.OnTimeSetListener { _, h, m -> onSelected(h, m) }
     }
+
+    object OpenOssLicenses : ViewEvents()
 }
 
 typealias OnDateSelectedListener = (year: Int, month: Int, day: Int) -> Unit

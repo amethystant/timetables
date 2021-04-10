@@ -11,6 +11,7 @@ buildscript {
         classpath(kotlin("gradle-plugin", version = Config.Dependency.kotlin))
         classpath("androidx.navigation", "navigation-safe-args-gradle-plugin", Config.Dependency.navigation)
         classpath("com.github.dcendents", "android-maven-gradle-plugin", "2.1")
+        classpath("com.google.android.gms", "oss-licenses-plugin", "0.10.3")
     }
 }
 

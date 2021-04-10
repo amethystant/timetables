@@ -16,7 +16,7 @@ object Config {
         const val navigation = "2.1.0-alpha06"
         const val glide = "4.9.0"
         const val constraintLayout = "2.0.0-beta4"
-        const val gradlePlugin = "4.0.1"
+        const val gradlePlugin = "4.1.3"
         const val koin = "2.0.1"
         const val retrofit = "2.6.0"
         const val retrofitCoroutines = "0.9.2"
@@ -27,6 +27,7 @@ object Config {
         const val teanity = "0.+"
         const val viewPager2 = "1.0.0-rc01"
         const val work = "2.5.0"
+        const val ossLicenses = "17.0.0"
     }
 
     object Build {
