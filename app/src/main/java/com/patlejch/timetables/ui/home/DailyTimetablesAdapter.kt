@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.patlejch.timetables.ui.home.timetable.TimetableFragment
-import com.patlejch.timetables.util.fromMilisToDays
+import com.patlejch.timetables.util.fromMillisToDays
 import com.patlejch.timetables.util.plus
 import java.util.*
 
@@ -29,7 +29,7 @@ class DailyTimetablesAdapter(date: Date, fragment: Fragment) :
     fun getDate(position: Int) = dayAtHalf + (position - half)
 
     fun getPosition(date: Date) =
-        (date.time.fromMilisToDays() - getDate(0).time.fromMilisToDays()).toInt()
+        (date.time.fromMillisToDays() - getDate(0).time.fromMillisToDays()).toInt()
 
     /**
      * @receiver must be the ViewPager2 instance this adapter is attached to

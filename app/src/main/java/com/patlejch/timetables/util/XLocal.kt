@@ -16,13 +16,17 @@ operator fun Date.plus(days: Int): Date {
 
 operator fun Date.minus(days: Int) = plus(-days)
 
-fun Long.fromMilisToDays() = this / 1000 / 3600 / 24
+fun Long.fromMillisToDays() = this / 1000 / 3600 / 24
 
 fun verifyUrl(url: String) = URLUtil.isValidUrl(url)
 
-private val dbFormatDay = SimpleDateFormat(Constants.DB_FORMAT_DAY, Locale.UK)
+private val dbFormatDay = SimpleDateFormat(Constants.DB_FORMAT_DAY, Locale.UK).apply {
+    timeZone = TimeZone.getTimeZone("UTC")
+}
 
-private val dbFormatWhole = SimpleDateFormat(Constants.DB_FORMAT_WHOLE, Locale.UK)
+private val dbFormatWhole = SimpleDateFormat(Constants.DB_FORMAT_WHOLE, Locale.UK).apply {
+    timeZone = TimeZone.getTimeZone("UTC")
+}
 
 fun Date.dbFormatDay() = dbFormatDay.format(this)
 
