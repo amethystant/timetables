@@ -1,5 +1,8 @@
 import com.android.build.gradle.internal.dsl.SigningConfig
 
+val appName = "Timetables"
+val appNameRes = "app_name"
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -38,6 +41,7 @@ android {
         targetSdkVersion(Config.Android.targetSdk)
         versionCode = 1
         versionName = "1.0"
+        resValue("string", appNameRes, appName)
 
         //testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true
@@ -74,12 +78,14 @@ android {
         }
         getByName(Config.Build.Type.DEBUG) {
             signingConfig = signingConfigs.findByName(Config.Sign.DEBUG)
+            resValue("string", appNameRes, "[Debug] $appName")
         }
         create(Config.Build.Type.MOCK) {
             matchingFallbacks += listOf(Config.Build.Type.DEBUG)
             applicationIdSuffix = ".${Config.Build.Type.MOCK}"
             isDebuggable = true
             signingConfig = signingConfigs.findByName(Config.Sign.DEBUG)
+            resValue("string", appNameRes, "[Mock] $appName")
         }
     }
 
