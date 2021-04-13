@@ -3,12 +3,13 @@ package com.patlejch.timetables.data.repository
 import com.patlejch.timetables.Config
 import com.patlejch.timetables.data.database.EventDao
 import com.patlejch.timetables.data.database.EventDao.Companion.fetchByDate
-import com.patlejch.timetables.data.network.ApiServices
 import com.patlejch.timetables.data.usecase.FetchEventsUseCase
 import com.patlejch.timetables.model.entity.inbound.EventsResponse
 import com.patlejch.timetables.model.event.DataEvent
 import com.skoumal.teanity.rxbus.RxBus
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import java.util.*
 
@@ -19,36 +20,38 @@ class EventRepository(
     private val rxBus: RxBus
 ) {
 
-    suspend fun fetch() = withContext(Dispatchers.IO) {
-        eventDao.fetchAll().let {
-            if (it.isEmpty())
-                fetchRemote()
-            else
-                it
-        }
+    companion object {
+        val mutex = Mutex()
     }
 
     suspend fun fetchRemote() = withContext(Dispatchers.IO) {
-        fetchEventsUseCase().run {
-            save()
-            eventDao.fetchAll()
+        mutex.withLock {
+            fetchEventsUseCase().run {
+                save()
+                eventDao.fetchAll()
+            }
         }
     }
 
     suspend fun fetchChanges() = withContext(Dispatchers.IO) {
-        fetchEventsUseCase().run {
-            save()
-            objects
+        mutex.withLock {
+            fetchEventsUseCase().run {
+                save()
+                objects
+            }
         }
     }
 
     suspend fun fetchByDate(date: Date) = withContext(Dispatchers.IO) {
-        eventDao.fetchByDate(date)
+        mutex.withLock { eventDao.fetchByDate(date) }
     }
 
     suspend fun wipe() = withContext(Dispatchers.IO) {
-        eventDao.delete()
-        rxBus.post(DataEvent.EventsUpdated)
+        mutex.withLock {
+            eventDao.delete()
+            config.version = 0
+            rxBus.post(DataEvent.EventsUpdated)
+        }
     }
 
     private suspend fun EventsResponse.save() = withContext(Dispatchers.IO) {
