@@ -24,6 +24,37 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_time_slot" />
 
+        <View
+            android:id="@+id/timetable_gradient_left"
+            android:layout_width="24dp"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_gradient_left"
+            android:backgroundTint="?colorSurface"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/timetable_gradient_right"
+            android:layout_width="24dp"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_gradient_left"
+            android:backgroundTint="?colorSurface"
+            android:rotation="180"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- todo delete this if it turns out ugly -->
+        <View
+            android:layout_width="2px"
+            android:layout_height="0dp"
+            android:background="@color/dividerGray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="PxUsage" />
+
         <androidx.appcompat.widget.AppCompatTextView
             goneUnless="@{viewModel.empty &amp;&amp; !viewModel.refreshing}"
             android:layout_width="wrap_content"
@@ -31,9 +62,10 @@
             android:text="@string/timetable_empty"
             android:textAppearance="@style/TextAppearance.Caption"
             android:textStyle="bold"
+            app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/timetable_gradient_right"
+            app:layout_constraintStart_toEndOf="@id/timetable_gradient_left"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias=".4" />
 

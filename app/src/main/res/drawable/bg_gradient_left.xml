@@ -5,13 +5,8 @@
         <shape android:shape="rectangle">
             <gradient
                 android:angle="0"
-                android:startColor="#343434"
+                android:startColor="#000"
                 android:endColor="@android:color/transparent" />
-            <padding
-                android:left="@dimen/margin_generic"
-                android:right="@dimen/margin_generic"
-                android:top="@dimen/margin_generic_double"
-                android:bottom="@dimen/margin_generic" />
         </shape>
     </item>
 

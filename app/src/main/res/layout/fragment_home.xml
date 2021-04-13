@@ -35,11 +35,19 @@
                     width="@{viewModel.params.leftColumnWidth}"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:elevation="2dp"
                     android:outlineProvider="bounds"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:layout_height="wrap_content"
                     tools:layout_width="40dp" />
+
+                <View
+                    android:layout_width="2px"
+                    android:layout_height="0dp"
+                    android:background="@color/dividerGray"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/home_left_column"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="PxUsage" />
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/home_view_pager"
