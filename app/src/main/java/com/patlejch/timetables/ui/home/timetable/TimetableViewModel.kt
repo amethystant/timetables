@@ -45,7 +45,7 @@ class TimetableViewModel(
 
     val timeSlots = SparseArray<DiffObservableList<GenericRvItem>>()
 
-    val refreshing = KObservableField(false)
+    val refreshing = KObservableField(true)
 
     init {
         items.update((startingHour..endingHour).map { TimeSlotItem(it) })
@@ -73,6 +73,7 @@ class TimetableViewModel(
     }
 
     private fun refreshLocal() = launch {
+        refreshing.value = true
         runCatching {
             getEventsFilteredUseCase(day, filters).replaceList()
         }.snackbarOnFailure()

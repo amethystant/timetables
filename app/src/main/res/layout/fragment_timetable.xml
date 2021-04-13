@@ -25,7 +25,7 @@
             tools:listitem="@layout/item_time_slot" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            goneUnless="@{viewModel.empty}"
+            goneUnless="@{viewModel.empty &amp;&amp; !viewModel.refreshing}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/timetable_empty"
@@ -36,6 +36,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias=".4" />
+
+        <ProgressBar
+            style="@style/Widget.Progress"
+            goneUnless="@{viewModel.empty &amp;&amp; viewModel.refreshing}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
