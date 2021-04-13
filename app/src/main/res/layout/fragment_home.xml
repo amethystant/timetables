@@ -27,7 +27,6 @@
                 android:layout_height="match_parent"
                 android:background="?colorSurface">
 
-                <!-- fixme delete this and add regular recyclerview -->
                 <com.patlejch.timetables.ui.home.HomeLeftColumnView
                     android:id="@+id/home_left_column"
                     rowCount="@{viewModel.params.rowCount}"
@@ -36,7 +35,7 @@
                     width="@{viewModel.params.leftColumnWidth}"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:elevation="4dp"
+                    android:elevation="2dp"
                     android:outlineProvider="bounds"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:layout_height="wrap_content"
