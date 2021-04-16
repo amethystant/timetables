@@ -192,7 +192,7 @@
                     app:layout_constrainedWidth="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/settings_filters_info_icon"
-                    app:layout_constraintTop_toTopOf="@id/settings_filters_chips" />
+                    app:layout_constraintTop_toBottomOf="@id/settings_filters_chips" />
 
                 <!-- section notifications -->
 
