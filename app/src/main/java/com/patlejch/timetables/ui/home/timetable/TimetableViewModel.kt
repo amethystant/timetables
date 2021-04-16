@@ -21,6 +21,7 @@ import com.skoumal.teanity.util.DiffObservableList
 import com.skoumal.teanity.util.KObservableField
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class TimetableViewModel(
     private val day: Date,
@@ -44,6 +45,7 @@ class TimetableViewModel(
     private var filters = listOf<Filter>()
 
     val timeSlots = SparseArray<DiffObservableList<GenericRvItem>>()
+    val slotPositions = HashMap<Int, KObservableField<Int>>()
 
     val refreshing = KObservableField(true)
 
@@ -52,6 +54,7 @@ class TimetableViewModel(
 
         for (i in startingHour..endingHour) {
             timeSlots.put(i, diffListOf())
+            slotPositions[i] = KObservableField(0)
         }
 
         filtersUpdated()
@@ -99,7 +102,22 @@ class TimetableViewModel(
             }
         }
 
-        (startingHour..endingHour).forEach { timeSlots[it].update(newTimeSlots[it]) }
+        (startingHour..endingHour).forEach {
+            timeSlots[it].update(newTimeSlots[it])
+            slotPositions[it]?.value = 0
+        }
+    }
+
+    fun nextEventClicked(hour: Int) {
+        slotPositions[hour]?.apply {
+            value++
+        }
+    }
+
+    fun previousEventClicked(hour: Int) {
+        slotPositions[hour]?.apply {
+            value--
+        }
     }
 
     fun getColor(item: EventItem): Int {

@@ -13,6 +13,9 @@ import androidx.constraintlayout.widget.Group
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.core.view.isInvisible
+import androidx.databinding.InverseBindingAdapter
+import androidx.databinding.InverseBindingListener
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.request.RequestOptions
@@ -181,3 +184,28 @@ fun ChipGroup.setUp(items: List<String>, onChipClosedListener: OnChipClosedListe
 fun ViewFlipper.setPage(page: Int) {
     displayedChild = page
 }
+
+@BindingAdapter("snapPosition")
+fun RecyclerView.animatePosition(position: Int) {
+    val currentPos = (layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
+    if (position in 0 until (layoutManager?.itemCount ?: 0) && currentPos != position) {
+        smoothScrollToPosition(position)
+    }
+}
+
+@BindingAdapter("recyclerScrollIdleListener")
+fun RecyclerView.listenForPosition(listener: InverseBindingListener) {
+    addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            super.onScrollStateChanged(recyclerView, newState)
+
+            if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                listener.onChange()
+            }
+        }
+    })
+}
+
+@InverseBindingAdapter(attribute = "snapPosition", event = "recyclerScrollIdleListener")
+fun RecyclerView.findScrolledItem() =
+    (layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()

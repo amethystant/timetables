@@ -20,12 +20,14 @@
         height="@{viewModel.params.rowHeight}"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_height="200dp">
+        tools:layout_height="90dp">
 
         <androidx.recyclerview.widget.RecyclerView
+            gone="@{viewModel.timeSlots.get(item.getHour()).isEmpty()}"
             itemBinding="@{viewModel.binding}"
             items="@{viewModel.timeSlots.get(item.getHour())}"
             snap="@{true}"
+            snapPosition="@={viewModel.slotPositions.get(item.getHour())}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
@@ -34,6 +36,31 @@
             android:paddingEnd="@dimen/margin_generic_triple"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_event" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            gone="@{viewModel.slotPositions.get(item.getHour()) == 0}"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start|center_vertical"
+            android:alpha="0.8"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{() -> viewModel.previousEventClicked(item.getHour())}"
+            android:paddingHorizontal="@dimen/margin_generic_half"
+            app:srcCompat="@drawable/bg_event_back" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            gone="@{viewModel.slotPositions.get(item.getHour()) >= viewModel.timeSlots.get(item.getHour()).getSize() - 1}"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end|center_vertical"
+            android:alpha="0.8"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{() -> viewModel.nextEventClicked(item.getHour())}"
+            android:paddingHorizontal="@dimen/margin_generic_half"
+            android:rotation="180"
+            app:srcCompat="@drawable/bg_event_back" />
 
     </FrameLayout>
 
