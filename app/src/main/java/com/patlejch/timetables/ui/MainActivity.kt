@@ -34,8 +34,6 @@ class MainActivity : TimetablesActivity<MainViewModel, ActivityMainBinding>() {
         }
 
         syncManager.schedulePeriodicSync()
-        viewModel.scheduleNotifications()
-
         binding.homeViewModel = homeViewModel
         binding.settingsViewModel = settingsViewModel
         binding.bottomNavView.setupWith(navController) {

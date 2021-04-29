@@ -36,22 +36,14 @@
 	<string name="settings_filters_explication">Here you can specify which events you don\'t want to see on your timetable. Simply type in the text that you want to ignore, such as \"Group Y\" - provided you\'re a member of Group X.</string>
 	<string name="settings_filters_hint">Type the module you never want to attend</string>
 	<string name="settings_filters_none">No filters set.</string>
-	<string name="settings_notifications_title">Notifications</string>
-	<string name="settings_notifications_daily_time">Daily notifications time</string>
-	<string name="settings_notifications_daily_in_advance">Daily notifications on the day before</string>
-	<string name="settings_notifications_daily_explication">The time of notification delivery might be inexact on certain brands of phones.\nNotifications can be turned off in system settings.</string>
 	<string name="settings_oss_licenses">OSS Libraries</string>
 
 	<!-- Notifications -->
 	<string name="channel_name_timetable_changes">Timetable changes</string>
-	<string name="channel_name_daily_notifications">Daily notifications</string>
 	<string name="notification_event_added_title">New event in timetable!</string>
 	<string name="notification_event_added_text">The following event was added to the timetable: %s @ %s</string>
 	<string name="notification_event_removed_title">An event was cancelled</string>
 	<string name="notification_event_removed_text">The following event was removed from the timetable: %s @ %s</string>
 	<string name="notification_timetable_changes_title">Multiple changes were made to your timetable!</string>
 	<string name="notification_timetable_changes_text">%d events were added, %d were cancelled.</string>
-	<string name="notification_daily_title">Time to prepare for your day at uni!</string>
-	<string name="notification_daily_text">Your first event today starts at %s @ %s - %s. You have %d events today.</string>
-	<string name="notification_daily_day_before_text">Your first event tomorrow starts at %s @ %s - %s. You have %d events tomorrow.</string>
 </resources>

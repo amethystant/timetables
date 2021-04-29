@@ -15,9 +15,6 @@ import com.skoumal.teanity.rxbus.RxBus
 import com.skoumal.teanity.util.BaseDiffObservableList
 import com.skoumal.teanity.util.DiffObservableList
 import com.skoumal.teanity.util.KObservableField
-import com.skoumal.teanity.util.Observer
-import java.text.DateFormat
-import java.util.*
 
 class SettingsViewModel(
     private val config: Config,
@@ -34,58 +31,23 @@ class SettingsViewModel(
     val filter = KObservableField("")
     val filters = DiffObservableList(StringDiffCallback)
 
-    private val notificationHour = KObservableField(0)
-    private val notificationMinute = KObservableField(0)
-    val notificationTimeFormatted = Observer(notificationHour, notificationMinute) {
-        return@Observer Calendar.getInstance().run {
-            set(Calendar.HOUR_OF_DAY, notificationHour.value)
-            set(Calendar.MINUTE, notificationMinute.value)
-            DateFormat.getTimeInstance(DateFormat.SHORT).format(time)
-        }
-    }
-
-    val notificationDayBefore = KObservableField(config.notificationDayBefore)
-
     init {
         refreshValues()
         refreshFilters()
 
         rxBus.register<DataEvent.CalendarUrlUpdated>().subscribeK { refreshValues() }
         rxBus.register<DataEvent.FiltersUpdated>().subscribeK { refreshFilters() }
-        rxBus.register<DataEvent.NotificationTimeUpdated>().subscribeK { refreshValues() }
-        rxBus.register<DataEvent.NotificationDayBeforeUpdated>().subscribeK {
-            refreshValues()
-        }
 
         calendarUrl.addOnPropertyChangedCallback {
             saveUrl(it)
             urlChanged.value = true
         }
-
-        val timeObserver: (Int) -> Unit = {
-            config.updateNotificationTime(
-                Config.NotificationTime(notificationHour.value, notificationMinute.value)
-            )
-        }
-        notificationHour.addOnPropertyChangedCallback(callback = timeObserver)
-        notificationMinute.addOnPropertyChangedCallback(callback = timeObserver)
-
-        notificationDayBefore.addOnPropertyChangedCallback(
-            callback = config::updateNotificationDayBefore
-        )
     }
 
     private fun refreshValues() {
         if (urlChanged.value.not()) {
             calendarUrl.value = config.calendarUrl
         }
-
-        config.notificationTime.apply {
-            notificationHour.value = hour
-            notificationMinute.value = minute
-        }
-
-        notificationDayBefore.value = config.notificationDayBefore
     }
 
     // section url
@@ -133,21 +95,6 @@ class SettingsViewModel(
     fun removeChipClicked(item: String) {
         filters.remove(item)
         saveFilters()
-    }
-
-    // section notifications
-
-    fun selectNotificationTime() {
-        ViewEvents.ShowTimePicker(
-            notificationHour.value,
-            notificationMinute.value,
-            ::notificationTimeSelected
-        ).publish()
-    }
-
-    private fun notificationTimeSelected(hour: Int, minute: Int) {
-        notificationHour.value = hour
-        notificationMinute.value = minute
     }
 
     // section oss libraries

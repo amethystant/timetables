@@ -194,92 +194,6 @@
                     app:layout_constraintStart_toEndOf="@id/settings_filters_info_icon"
                     app:layout_constraintTop_toBottomOf="@id/settings_filters_chips" />
 
-                <!-- section notifications -->
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/settings_notifications_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_generic_double"
-                    android:layout_marginTop="@dimen/margin_generic_double"
-                    android:layout_marginEnd="@dimen/margin_generic_double"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="@string/settings_notifications_title"
-                    android:textAppearance="@style/TextAppearance.Subtitle.Mono"
-                    app:layout_constrainedWidth="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/settings_filters_info_text" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/settings_notifications_daily_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_generic_double"
-                    android:layout_marginEnd="@dimen/margin_generic_double"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="@string/settings_notifications_daily_time"
-                    android:textAppearance="@style/TextAppearance"
-                    app:layout_constrainedWidth="true"
-                    app:layout_constraintEnd_toStartOf="@id/settings_notifications_daily_time_button"
-                    app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toStartOf="@id/settings_notifications_title"
-                    app:layout_constraintTop_toBottomOf="@id/settings_notifications_title" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/settings_notifications_daily_time_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/margin_generic_double"
-                    android:background="?selectableItemBackground"
-                    android:onClick="@{() -> viewModel.selectNotificationTime()}"
-                    android:text="@{viewModel.notificationTimeFormatted}"
-                    android:textAppearance="@style/TextAppearance"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/settings_notifications_daily_time"
-                    tools:text="8:00" />
-
-                <com.google.android.material.switchmaterial.SwitchMaterial
-                    android:id="@+id/settings_notifications_daily_in_advance"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_generic"
-                    android:checked="@={viewModel.notificationDayBefore}"
-                    android:maxLines="1"
-                    android:text="@string/settings_notifications_daily_in_advance"
-                    android:textAppearance="@style/TextAppearance"
-                    app:layout_constraintEnd_toEndOf="@id/settings_notifications_daily_time_button"
-                    app:layout_constraintStart_toStartOf="@id/settings_notifications_daily_time"
-                    app:layout_constraintTop_toBottomOf="@id/settings_notifications_daily_time" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/settings_notifications_daily_info_icon"
-                    android:layout_width="@dimen/margin_generic"
-                    android:layout_height="@dimen/margin_generic"
-                    app:layout_constraintBottom_toBottomOf="@id/settings_notifications_daily_info_text"
-                    app:layout_constraintStart_toStartOf="@id/settings_notifications_daily_in_advance"
-                    app:layout_constraintTop_toTopOf="@+id/settings_notifications_daily_info_text"
-                    app:srcCompat="@drawable/ic_info"
-                    app:tint="@color/colorOnSurfaceVariant" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/settings_notifications_daily_info_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_generic"
-                    android:layout_marginEnd="@dimen/margin_generic_double"
-                    android:text="@string/settings_notifications_daily_explication"
-                    android:textAppearance="@style/TextAppearance.Caption"
-                    android:textColor="@color/colorOnSurfaceVariant"
-                    app:layout_constrainedWidth="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toEndOf="@id/settings_notifications_daily_info_icon"
-                    app:layout_constraintTop_toBottomOf="@id/settings_notifications_daily_in_advance" />
-
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/settings_oss_licences"
                     style="@style/Widget.Button.Text"
@@ -293,7 +207,7 @@
                     app:layout_constraintVertical_bias="1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/settings_notifications_daily_info_text" />
+                    app:layout_constraintTop_toBottomOf="@id/settings_filters_info_text" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

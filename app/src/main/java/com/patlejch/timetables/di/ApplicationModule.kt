@@ -16,6 +16,6 @@ val applicationModule = module {
     single { get<Context>().resources }
     single { Config(get()) }
     single { SyncManager(get()) }
-    single { NotificationManager(get(), get()) }
+    single { NotificationManager(get()) }
     single(named(DI_DO_MOCK)) { Constants.MOCK }
 }
